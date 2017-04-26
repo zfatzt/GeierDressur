@@ -23,6 +23,8 @@ import de.yadrone.apps.controlcenter.ICCPlugin;
 import de.yadrone.base.IARDrone;
 
 public class KeyboardLayoutPanel extends JPanel implements ICCPlugin {
+	private static final long serialVersionUID = 1L;
+
 	private KeyboardCommandManager cmdManager;
 
 	private String currentKey = "";
@@ -139,6 +141,7 @@ public class KeyboardLayoutPanel extends JPanel implements ICCPlugin {
 	}
 
 	public JPanel getPanel() {
+
 		return this;
 	}
 }
