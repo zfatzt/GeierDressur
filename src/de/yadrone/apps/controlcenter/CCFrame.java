@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardLayoutPanel;
+import de.yadrone.apps.controlcenter.plugins.video.VideoPanel;
 import de.yadrone.base.ARDrone;
-import de.yadrone.base.IARDrone;
 
 public class CCFrame extends JFrame {
 
@@ -56,9 +56,14 @@ public class CCFrame extends JFrame {
 				g.drawImage(scaledImage, 0, 0, this);
 			}
 		};
-
+		
+		//Keyboard stearing
 		KeyboardLayoutPanel keyboard = new KeyboardLayoutPanel();
 		keyboard.activate(drone);
+
+		//Video output
+		VideoPanel video = new VideoPanel();
+		video.activate(drone);
 
 		setContentPane(desktop);
 
