@@ -1,14 +1,26 @@
 package de.yadrone.apps.controlcenter;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardLayoutPanel;
+import de.yadrone.apps.controlcenter.plugins.video.VideoCanvas;
 import de.yadrone.apps.controlcenter.plugins.video.VideoPanel;
 import de.yadrone.base.ARDrone;
 
@@ -23,7 +35,7 @@ public class CCFrame extends JFrame {
 		setSize(920, 550);
 
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		// setUndecorated(true);
+		setUndecorated(true);
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -56,18 +68,76 @@ public class CCFrame extends JFrame {
 				g.drawImage(scaledImage, 0, 0, this);
 			}
 		};
-		
-		//Keyboard stearing
+
+		// Title
+		JLabel title = new JLabel("Geier Controller");
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		title.setFont(new Font("Lucida Console", Font.BOLD, 30));
+		title.setForeground(Color.GREEN);
+
+		// JPanel
+		JPanel panelMain = new JPanel();
+		JPanel panelLeft = new JPanel();
+		JPanel panelRight = new JPanel();
+		JPanel panelRightTop = new JPanel();
+		JPanel panelRightBottom = new JPanel();
+		JPanel panelCenter = new JPanel();
+		JPanel panelVideoTop = new JPanel();
+		JPanel panelVideo = new JPanel();
+
+		// Size
+		panelMain.setPreferredSize(new Dimension(1920, 1080));
+		panelLeft.setPreferredSize(new Dimension(600, 1070));
+		panelRight.setPreferredSize(new Dimension(600, 1070));
+		panelRightTop.setPreferredSize(new Dimension(600, 535));
+		panelRightBottom.setPreferredSize(new Dimension(600, 535));
+		panelCenter.setPreferredSize(new Dimension(700, 1070));
+		panelVideo.setPreferredSize(new Dimension(700, 400));
+		panelVideoTop.setPreferredSize(new Dimension(700, 300));
+
+		// Color
+		panelMain.setBackground(new Color(0, 0, 0));
+		panelLeft.setBackground(new Color(255, 0, 0));
+		panelRight.setBackground(Color.BLACK);
+		panelRightTop.setBackground(Color.BLUE);
+		panelRightBottom.setBackground(Color.RED);
+		panelCenter.setBackground(Color.BLACK);
+		panelVideo.setBackground(Color.GRAY);
+		panelVideoTop.setBackground(Color.BLACK);
+
+		// Layout
+		panelVideoTop.setLayout(new BorderLayout());
+
+		// Keyboard stearing
 		KeyboardLayoutPanel keyboard = new KeyboardLayoutPanel();
 		keyboard.activate(drone);
 
-		//Video output
-		VideoPanel video = new VideoPanel();
-		video.activate(drone);
+		// Video output
+		VideoCanvas video = new VideoCanvas(drone);
+		video.setPreferredSize(new Dimension(700, 400));
 
-		setContentPane(desktop);
+		// setContentPane(desktop);
 
+		// Add to JPanel
+		panelMain.add(panelLeft);
+		panelMain.add(panelCenter);
+		panelMain.add(panelRight);
+
+		// Center
+		panelCenter.add(panelVideoTop);
+		panelCenter.add(panelVideo);
+
+		panelVideo.add(video);
+
+		panelVideoTop.add(title);
+
+		// Right
+		panelRight.add(panelRightTop);
+		panelRight.add(panelRightBottom);
+
+		getContentPane().add(panelMain);
 		setVisible(true);
+		pack();
 	}
 
 }
