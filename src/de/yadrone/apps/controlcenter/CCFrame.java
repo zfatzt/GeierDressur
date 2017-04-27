@@ -8,18 +8,23 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardLayoutPanel;
+import de.yadrone.apps.controlcenter.plugins.video.VideoPanel;
 import de.yadrone.base.ARDrone;
 
 public class CCFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private ARDrone drone = null;
 
 	public CCFrame(ARDrone ardrone) {
 		super("YADrone Control Center");
+		ARDrone drone = ardrone;
+		setSize(920, 550);
 
-		setSize(1920, 1050);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// setUndecorated(true);
 
-		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -51,6 +56,14 @@ public class CCFrame extends JFrame {
 				g.drawImage(scaledImage, 0, 0, this);
 			}
 		};
+		
+		//Keyboard stearing
+		KeyboardLayoutPanel keyboard = new KeyboardLayoutPanel();
+		keyboard.activate(drone);
+
+		//Video output
+		VideoPanel video = new VideoPanel();
+		video.activate(drone);
 
 		setContentPane(desktop);
 

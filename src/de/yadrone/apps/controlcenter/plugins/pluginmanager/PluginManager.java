@@ -36,8 +36,7 @@ public class PluginManager extends JPanel implements ICCPlugin {
 	private CCPropertyManager pluginProperties;
 
 	/**
-	 * This frame is used to get screen size and location upon initialization
-	 * and finalization
+	 * This frame is used to get screen size and location upon initialization and finalization
 	 */
 	private Map<ICCPlugin, JInternalFrame> activePluginFrames;
 
