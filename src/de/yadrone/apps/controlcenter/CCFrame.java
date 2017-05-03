@@ -6,11 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -19,8 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import de.yadrone.apps.controlcenter.plugins.battery.BatteryPanel;
 import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardLayoutPanel;
-import de.yadrone.apps.controlcenter.plugins.video.VideoCanvas;
+import de.yadrone.apps.controlcenter.plugins.speed.SpeedPanel;
 import de.yadrone.apps.controlcenter.plugins.video.VideoPanel;
 import de.yadrone.base.ARDrone;
 
@@ -84,6 +81,7 @@ public class CCFrame extends JFrame {
 		JPanel panelCenter = new JPanel();
 		JPanel panelVideoTop = new JPanel();
 		JPanel panelVideo = new JPanel();
+		JPanel panelBattery = new JPanel();
 
 		// Size
 		panelMain.setPreferredSize(new Dimension(1920, 1080));
@@ -99,11 +97,13 @@ public class CCFrame extends JFrame {
 		panelMain.setBackground(new Color(0, 0, 0));
 		panelLeft.setBackground(new Color(255, 0, 0));
 		panelRight.setBackground(Color.BLACK);
-		panelRightTop.setBackground(Color.BLUE);
-		panelRightBottom.setBackground(Color.RED);
+		panelRightTop.setBackground(Color.BLACK);
+		panelRightBottom.setBackground(Color.BLACK);
 		panelCenter.setBackground(Color.BLACK);
 		panelVideo.setBackground(Color.GRAY);
 		panelVideoTop.setBackground(Color.BLACK);
+
+		panelBattery.setBackground(Color.GREEN);
 
 		// Layout
 		panelVideoTop.setLayout(new BorderLayout());
@@ -113,8 +113,21 @@ public class CCFrame extends JFrame {
 		keyboard.activate(drone);
 
 		// Video output
-		VideoCanvas video = new VideoCanvas(drone);
+		VideoPanel video = new VideoPanel();
 		video.setPreferredSize(new Dimension(700, 400));
+
+		// Plugin
+		// final PluginManager pluginManager = new PluginManager();
+		// pluginManager.setDesktop(desktop);
+		// pluginManager.activate(ardrone);
+		// setContentPane(pluginManager);
+
+		SpeedPanel speedPanel = new SpeedPanel();
+
+		// Battery
+		BatteryPanel battery = new BatteryPanel();
+		battery.setPreferredSize(new Dimension(100, 50));
+		battery.activate(drone);
 
 		// setContentPane(desktop);
 
@@ -134,6 +147,13 @@ public class CCFrame extends JFrame {
 		// Right
 		panelRight.add(panelRightTop);
 		panelRight.add(panelRightBottom);
+
+		panelRightBottom.add(panelBattery);
+
+		panelBattery.add(battery);
+
+		// Left
+		panelLeft.add(speedPanel);
 
 		getContentPane().add(panelMain);
 		setVisible(true);
