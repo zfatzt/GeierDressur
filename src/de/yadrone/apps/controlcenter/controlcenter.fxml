@@ -1,78 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="720"
-	prefWidth="1280" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="de.yadrone.apps.controlcenter.controlcenterController">
-	<children>
-		<TextField fx:id="title" alignment="CENTER" editable="false"
-			layoutX="628.0" layoutY="114.0" prefHeight="102.0" prefWidth="636.0"
-			text="Geier Controller" AnchorPane.bottomAnchor="864.0"
-			AnchorPane.leftAnchor="628.0" AnchorPane.rightAnchor="656.0"
-			AnchorPane.topAnchor="114.0">
-			<font>
-				<Font name="System Bold" size="36.0" />
-			</font>
-		</TextField>
-		<ImageView fx:id="droneImage" fitHeight="374.0" fitWidth="404.0"
-			layoutX="1458.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true"
-			AnchorPane.bottomAnchor="615.0" AnchorPane.leftAnchor="1460.0"
-			AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0" />
-		<ProgressBar fx:id="batteryProgressbarDrone" layoutX="1562.0"
-			layoutY="549.0" prefHeight="80.0" prefWidth="320.0"
-			progress="0.0" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="1550.0"
-			AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0" style=" -fx-accent: 	LIGHTGREEN;"/>
-		<TextField fx:id="batterlyLevelDrone" editable="false"
-			layoutX="1460.0" layoutY="500.0" prefHeight="80.0" prefWidth="85.0"
-			text="Battery Level" AnchorPane.bottomAnchor="500.0"
-			AnchorPane.leftAnchor="1460.0" AnchorPane.rightAnchor="375.0"
-			AnchorPane.topAnchor="500.0" />
-		<TextField fx:id="statusDroneText" editable="false" layoutX="1465.0"
-			layoutY="618.0" prefHeight="80.0" prefWidth="85.0" text="Status"
-			AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="1460.0"
-			AnchorPane.rightAnchor="375.0" AnchorPane.topAnchor="600.0" />
-		<ImageView fx:id="myoImage" fitHeight="374.0" fitWidth="404.0"
-			layoutX="130.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true"
-			AnchorPane.bottomAnchor="615.0" AnchorPane.leftAnchor="50.0"
-			AnchorPane.rightAnchor="1460.0" AnchorPane.topAnchor="100.0" />
-		<MediaView fx:id="VideoFrame" fitHeight="360.0" fitWidth="640.0"
-			layoutX="633.0" layoutY="372.0" AnchorPane.leftAnchor="633.0"
-			AnchorPane.rightAnchor="647.0" AnchorPane.topAnchor="372.0" />
-		<ProgressBar fx:id="batteryProgressbarMyo" layoutX="204.0"
-			layoutY="529.0" prefHeight="80.0" prefWidth="320.0" progress="0.0"
-			AnchorPane.bottomAnchor="500.0" AnchorPane.rightAnchor="1460.0"
-			AnchorPane.topAnchor="500.0"  style=" -fx-accent: 	LIGHTGREEN;"/>
-		<TextField fx:id="batteryLevelMyo" editable="false" layoutX="102.0"
-			layoutY="480.0" prefHeight="80.0" prefWidth="85.0" text="Battery Level"
-			AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="50.0"
-			AnchorPane.rightAnchor="1785.0" AnchorPane.topAnchor="500.0" />
-		<TextField fx:id="gestures" editable="false" layoutX="71.0"
-			layoutY="604.0" prefHeight="80.0" prefWidth="85.0" text="Gesture"
-			AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="50.0"
-			AnchorPane.rightAnchor="1785.0" AnchorPane.topAnchor="600.0" />
-		<Pane fx:id="statusText" layoutX="1578.0" layoutY="594.0"
-			prefHeight="160.0" prefWidth="320.0" AnchorPane.bottomAnchor="300.0"
-			AnchorPane.leftAnchor="1550.0" AnchorPane.rightAnchor="50.0"
-			AnchorPane.topAnchor="600.0" />
-		<TextField fx:id="gesturePerfomed" editable="false" layoutX="226.0"
-			layoutY="628.0" prefHeight="80.0" prefWidth="320.0"
-			AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="140.0"
-			AnchorPane.rightAnchor="1460.0" AnchorPane.topAnchor="600.0" />
-		<TextField fx:id="statusMyoText" editable="false" layoutX="43.0"
-			layoutY="694.0" prefHeight="80.0" prefWidth="85.0" text="Status"
-			AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="50.0"
-			AnchorPane.rightAnchor="1785.0" AnchorPane.topAnchor="700.0" />
-		<Pane fx:id="statusMyo" layoutX="126.0" layoutY="690.0"
-			prefHeight="160.0" prefWidth="320.0" AnchorPane.bottomAnchor="300.0"
-			AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="1460.0"
-			AnchorPane.topAnchor="700.0" />
-	</children>
-</AnchorPane>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.yadrone.apps.controlcenter.controlcenterController">
+   <top>
+      <Label alignment="CENTER" prefHeight="74.0" prefWidth="543.0" text="GeierDressur" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="TitilliumText25L-600wt" size="51.0" />
+         </font>
+      </Label>
+   </top>
+   <left>
+      <SplitPane dividerPositions="0.3702" orientation="VERTICAL" prefHeight="678.0" prefWidth="316.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <ImageView fx:id="myoImage" fitHeight="265.0" fitWidth="310.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="311.0" prefWidth="308.0">
+               <children>
+                  <Label fx:id="armActive" layoutX="94.0" layoutY="118.0" prefHeight="25.0" prefWidth="200.0" text="Label" AnchorPane.bottomAnchor="299.0" />
+                  <Label layoutX="6.0" layoutY="118.0" prefHeight="25.0" prefWidth="83.0" text="Arm:" AnchorPane.bottomAnchor="299.0" AnchorPane.topAnchor="118.0" />
+                  <ProgressBar fx:id="progressbarMyo" layoutX="94.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" progress="0.0"  style=" -fx-accent: 	LIGHTGREEN;" />
+                  <Label layoutX="6.0" layoutY="50.0" prefHeight="25.0" prefWidth="83.0" text="Battery Level:" />
+                  <Label layoutX="6.0" layoutY="83.0" prefHeight="25.0" prefWidth="83.0" text="Gesture:" AnchorPane.bottomAnchor="334.0" AnchorPane.topAnchor="83.0" />
+                  <Label fx:id="gesturePerformed" layoutX="94.0" layoutY="83.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
+                  <Label layoutX="6.0" layoutY="156.0" prefHeight="25.0" prefWidth="83.0" text="Status:" />
+                  <Label fx:id="statusMyo" layoutX="94.0" layoutY="156.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </left>
+   <right>
+      <SplitPane dividerPositions="0.3702" orientation="VERTICAL" prefHeight="725.0" prefWidth="310.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="308.0">
+               <children>
+                  <ImageView fx:id="droneImage" fitHeight="265.0" fitWidth="310.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="323.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="51.0" prefHeight="25.0" prefWidth="83.0" text="Battery Level:" />
+                  <ProgressBar fx:id="progressbarDrone" layoutX="100.0"  style=" -fx-accent: 	LIGHTGREEN;" layoutY="51.0" prefHeight="25.0" prefWidth="200.0" progress="0.0" />
+                  <Label layoutX="14.0" layoutY="81.0" prefHeight="25.0" prefWidth="83.0" text="Height:" AnchorPane.bottomAnchor="336.0" AnchorPane.topAnchor="81.0" />
+                  <Label fx:id="heightDrone" layoutX="100.0" layoutY="81.0" prefHeight="25.0" prefWidth="200.0" text="Label" AnchorPane.bottomAnchor="336.0" AnchorPane.topAnchor="81.0" />
+                  <Label fx:id="speedDrone" layoutX="100.0" layoutY="118.0" prefHeight="25.0" prefWidth="200.0" text="Label" AnchorPane.bottomAnchor="299.0" AnchorPane.topAnchor="118.0" />
+                  <Label layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="83.0" text="Speed:" AnchorPane.bottomAnchor="299.0" AnchorPane.topAnchor="118.0" />
+                  <Label layoutX="14.0" layoutY="150.0" prefHeight="25.0" prefWidth="83.0" text="Status:" />
+                  <Label fx:id="statusVideoLabel" layoutX="100.0" layoutY="150.0" prefHeight="25.0" prefWidth="200.0" text="Navdata" />
+                  <Label fx:id="statusNavdataLabel" layoutX="100.0" layoutY="175.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
+                  <Label fx:id="statusConnectionLabel" layoutX="100.0" layoutY="200.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </right>
+   <center>
+      <MediaView fx:id="videoFrame" fitHeight="360.0" fitWidth="640.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <Label text="©by Laurent Mouchart, Tobias Fatzer" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

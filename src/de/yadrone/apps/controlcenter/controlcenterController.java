@@ -4,55 +4,49 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaView;
 
-public class controlcenterController implements Initializable {
-	@FXML
-	private TextField title;
-	@FXML
-	private ImageView droneImage;
-	@FXML
-	private ProgressBar batteryProgressbarDrone;
-	@FXML
-	private TextField batterlyLevelDrone;
-	@FXML
-	private TextField statusDroneText;
+public class controlcenterController implements Initializable{
 	@FXML
 	private ImageView myoImage;
 	@FXML
-	private MediaView VideoFrame;
+	private Label armActive;
 	@FXML
-	private ProgressBar batteryProgressbarMyo;
+	private ProgressBar progressbarMyo;
 	@FXML
-	private TextField batteryLevelMyo;
+	private Label gesturePerformed;
 	@FXML
-	private TextField gestures;
+	private Label statusMyo;
 	@FXML
-	private Pane statusText;
+	private ImageView droneImage;
 	@FXML
-	private TextField gesturePerfomed;
+	private ProgressBar progressbarDrone;
 	@FXML
-	private TextField statusMyoText;
+	private Label heightDrone;
 	@FXML
-	private Pane statusMyo;
+	private Label speedDrone;
+	@FXML
+	private Label statusVideoLabel;
+	@FXML
+	private Label statusNavdataLabel;
+	@FXML
+	private Label statusConnectionLabel;
+	@FXML
+	private MediaView videoFrame;
 
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		BatteryInDecimal bid = new BatteryInDecimal();
-		bid.setProgressBar(batteryProgressbarDrone);
+		bid.setProgressBar(progressbarDrone);
 		double batteryLVL = bid.getBatteryLevel();
-		batteryProgressbarDrone.setProgress(batteryLVL);
-
+		progressbarDrone.setProgress(batteryLVL);
+		
 	}
 }

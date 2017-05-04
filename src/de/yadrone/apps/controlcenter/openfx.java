@@ -4,9 +4,8 @@ package de.yadrone.apps.controlcenter;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class openfx extends Application {
@@ -17,7 +16,7 @@ public class openfx extends Application {
 	    
 	    @Override
 	    public void start(Stage stage) throws Exception {
-	        AnchorPane root = FXMLLoader.load(getClass().getResource("controlcenter.fxml"));
+	        BorderPane root = FXMLLoader.load(getClass().getResource("controlcenter.fxml"));
 	        stage.setTitle("Control Center");
 	        stage.setScene(new Scene(root));
 	        stage.show();
