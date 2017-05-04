@@ -1,4 +1,4 @@
-package thalmic.myo.example;
+package de.yadrone.apps.controllcenter.plugins.myo;
 
 import java.util.Arrays;
 

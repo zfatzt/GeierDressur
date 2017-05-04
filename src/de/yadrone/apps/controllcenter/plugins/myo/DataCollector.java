@@ -1,4 +1,4 @@
-package thalmic.myo.example;
+package de.yadrone.apps.controllcenter.plugins.myo;
 
 import com.thalmic.myo.AbstractDeviceListener;
 import com.thalmic.myo.Myo;

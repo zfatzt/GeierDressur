@@ -8,9 +8,10 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-	minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" type="AnchorPane"
-	xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0"
+	prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="de.yadrone.apps.controlcenter.controlcenterController">
 	<children>
 		<TextField fx:id="title" alignment="CENTER" editable="false"
 			layoutX="628.0" layoutY="114.0" prefHeight="102.0" prefWidth="636.0"
@@ -26,9 +27,9 @@
 			AnchorPane.bottomAnchor="615.0" AnchorPane.leftAnchor="1460.0"
 			AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0" />
 		<ProgressBar fx:id="batteryProgressbarDrone" layoutX="1562.0"
-			layoutY="549.0" prefHeight="80.0" prefWidth="320.0" progress="0.0"
-			AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="1550.0"
-			AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0" />
+			layoutY="549.0" prefHeight="80.0" prefWidth="320.0"
+			progress="0.0" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="1550.0"
+			AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="500.0" style=" -fx-accent: 	LIGHTGREEN;"/>
 		<TextField fx:id="batterlyLevelDrone" editable="false"
 			layoutX="1460.0" layoutY="500.0" prefHeight="80.0" prefWidth="85.0"
 			text="Battery Level" AnchorPane.bottomAnchor="500.0"
@@ -48,7 +49,7 @@
 		<ProgressBar fx:id="batteryProgressbarMyo" layoutX="204.0"
 			layoutY="529.0" prefHeight="80.0" prefWidth="320.0" progress="0.0"
 			AnchorPane.bottomAnchor="500.0" AnchorPane.rightAnchor="1460.0"
-			AnchorPane.topAnchor="500.0" />
+			AnchorPane.topAnchor="500.0"  style=" -fx-accent: 	LIGHTGREEN;"/>
 		<TextField fx:id="batteryLevelMyo" editable="false" layoutX="102.0"
 			layoutY="480.0" prefHeight="80.0" prefWidth="85.0" text="Battery Level"
 			AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="50.0"
@@ -74,4 +75,4 @@
 			AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="1460.0"
 			AnchorPane.topAnchor="700.0" />
 	</children>
-</fx:root>
+</AnchorPane>

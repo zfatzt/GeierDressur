@@ -1,18 +1,21 @@
 package de.yadrone.apps.controlcenter;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-
-import javafx.scene.control.TextField;
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
-
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaView;
 
-import javafx.scene.layout.Pane;
-
-public class controlcenterController {
+public class controlcenterController implements Initializable {
 	@FXML
 	private TextField title;
 	@FXML
@@ -42,4 +45,14 @@ public class controlcenterController {
 	@FXML
 	private Pane statusMyo;
 
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		BatteryInDecimal bid = new BatteryInDecimal();
+		bid.setProgressBar(batteryProgressbarDrone);
+		double batteryLVL = bid.getBatteryLevel();
+		batteryProgressbarDrone.setProgress(batteryLVL);
+
+	}
 }
