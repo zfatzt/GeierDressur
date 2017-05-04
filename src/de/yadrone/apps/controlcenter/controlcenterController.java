@@ -44,8 +44,7 @@ public class controlcenterController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		BatteryInDecimal bid = new BatteryInDecimal();
-		bid.setProgressBar(progressbarDrone);
-		double batteryLVL = bid.getBatteryLevel();
+		double batteryLVL = bid.getBatterkyLevel();
 		progressbarDrone.setProgress(batteryLVL);
 		
 	}
