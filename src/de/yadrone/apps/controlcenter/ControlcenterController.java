@@ -1,21 +1,20 @@
 package de.yadrone.apps.controlcenter;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import com.shigeodayo.ardrone.ARDrone;
-
-import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
+import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardLayoutPanel;
 import de.yadrone.base.IARDrone;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.media.MediaView;
 
-public class controlcenterController implements Initializable {
+public class ControlcenterController {
 
+	private IARDrone ardrone = null;
+
+	@FXML
+	private BorderPane borderPane;
 	@FXML
 	private ImageView myoImage;
 	@FXML
@@ -42,6 +41,16 @@ public class controlcenterController implements Initializable {
 	private Label statusConnectionLabel;
 	@FXML
 	private MediaView videoFrame;
+
+	public BorderPane getBorderPane() {
+		return borderPane;
+	}
+
+	public void setBorderPane(BorderPane borderPane) {
+		this.borderPane = borderPane;
+		KeyboardLayoutPanel keyboard = new KeyboardLayoutPanel();
+		keyboard.activate(ardrone);
+	}
 
 	public ImageView getMyoImage() {
 		return myoImage;
@@ -136,7 +145,7 @@ public class controlcenterController implements Initializable {
 	}
 
 	public void setStatusConnectionLabel(Label statusConnectionLabel) {
-		this.statusConnectionLabel = statusConnectionLabel;
+		this.statusConnectionLabel = statusConnectionLabel;   
 	}
 
 	public MediaView getVideoFrame() {
@@ -147,7 +156,12 @@ public class controlcenterController implements Initializable {
 		this.videoFrame = videoFrame;
 	}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public IARDrone getArdrone() {
+		return ardrone;
 	}
+
+	public void setArdrone(IARDrone ardrone) {
+		this.ardrone = ardrone;
+	}
+
 }

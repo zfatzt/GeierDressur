@@ -1,7 +1,6 @@
 package de.yadrone.apps.controlcenter;
 
 import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
-import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardLayoutPanel;
 import de.yadrone.base.ARDrone;
 import de.yadrone.base.IARDrone;
 import javafx.application.Application;
@@ -25,18 +24,17 @@ public class openfx extends Application {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("controlcenter.fxml"));
 		Scene scene = new Scene(loader.load());
-		controlcenterController c = loader.getController();
+		ControlcenterController c = loader.getController();
+		c.setArdrone(ardrone);
 
 		stage.setTitle("Control Center");
 		stage.setScene(scene);
 		stage.show();
 
-		KeyboardLayoutPanel keyboard = new KeyboardLayoutPanel();
-		keyboard.activate(ardrone);
 
-//		BatteryInDecimal bid = new BatteryInDecimal();
-//		bid.activate(ardrone);
-//		bid.setProgressbarDrone(c.getProgressbarDrone());
+		BatteryInDecimal bid = new BatteryInDecimal();
+		bid.activate(ardrone);
+		bid.setProgressbarDrone(c.getProgressbarDrone());
 
 	}
 

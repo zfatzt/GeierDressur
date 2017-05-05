@@ -6,11 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -21,7 +17,6 @@ import javax.swing.UIManager;
 
 import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardLayoutPanel;
 import de.yadrone.apps.controlcenter.plugins.video.VideoCanvas;
-import de.yadrone.apps.controlcenter.plugins.video.VideoPanel;
 import de.yadrone.base.ARDrone;
 
 public class CCFrame extends JFrame {
@@ -59,7 +54,14 @@ public class CCFrame extends JFrame {
 					scaledImage = originalImage;
 				}
 
-				if ((width != getWidth()) || (height != getHeight())) { // called once the user change the frame size
+				if ((width != getWidth()) || (height != getHeight())) { // called
+																		// once
+																		// the
+																		// user
+																		// change
+																		// the
+																		// frame
+																		// size
 					width = getWidth();
 					height = getHeight();
 					scaledImage = originalImage.getScaledInstance(getWidth(), getHeight(), Image.SCALE_AREA_AVERAGING);
