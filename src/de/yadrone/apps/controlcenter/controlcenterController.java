@@ -3,7 +3,10 @@ package de.yadrone.apps.controlcenter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.shigeodayo.ardrone.ARDrone;
+
 import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
+import de.yadrone.base.IARDrone;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -11,7 +14,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaView;
 
-public class controlcenterController implements Initializable{
+public class controlcenterController implements Initializable {
+
 	@FXML
 	private ImageView myoImage;
 	@FXML
@@ -39,13 +43,111 @@ public class controlcenterController implements Initializable{
 	@FXML
 	private MediaView videoFrame;
 
+	public ImageView getMyoImage() {
+		return myoImage;
+	}
 
+	public void setMyoImage(ImageView myoImage) {
+		this.myoImage = myoImage;
+	}
+
+	public Label getArmActive() {
+		return armActive;
+	}
+
+	public void setArmActive(Label armActive) {
+		this.armActive = armActive;
+	}
+
+	public ProgressBar getProgressbarMyo() {
+		return progressbarMyo;
+	}
+
+	public void setProgressbarMyo(ProgressBar progressbarMyo) {
+		this.progressbarMyo = progressbarMyo;
+	}
+
+	public Label getGesturePerformed() {
+		return gesturePerformed;
+	}
+
+	public void setGesturePerformed(Label gesturePerformed) {
+		this.gesturePerformed = gesturePerformed;
+	}
+
+	public Label getStatusMyo() {
+		return statusMyo;
+	}
+
+	public void setStatusMyo(Label statusMyo) {
+		this.statusMyo = statusMyo;
+	}
+
+	public ImageView getDroneImage() {
+		return droneImage;
+	}
+
+	public void setDroneImage(ImageView droneImage) {
+		this.droneImage = droneImage;
+	}
+
+	public ProgressBar getProgressbarDrone() {
+		return progressbarDrone;
+	}
+
+	public void setProgressbarDrone(ProgressBar progressbarDrone) {
+		this.progressbarDrone = progressbarDrone;
+	}
+
+	public Label getHeightDrone() {
+		return heightDrone;
+	}
+
+	public void setHeightDrone(Label heightDrone) {
+		this.heightDrone = heightDrone;
+	}
+
+	public Label getSpeedDrone() {
+		return speedDrone;
+	}
+
+	public void setSpeedDrone(Label speedDrone) {
+		this.speedDrone = speedDrone;
+	}
+
+	public Label getStatusVideoLabel() {
+		return statusVideoLabel;
+	}
+
+	public void setStatusVideoLabel(Label statusVideoLabel) {
+		this.statusVideoLabel = statusVideoLabel;
+	}
+
+	public Label getStatusNavdataLabel() {
+		return statusNavdataLabel;
+	}
+
+	public void setStatusNavdataLabel(Label statusNavdataLabel) {
+		this.statusNavdataLabel = statusNavdataLabel;
+	}
+
+	public Label getStatusConnectionLabel() {
+		return statusConnectionLabel;
+	}
+
+	public void setStatusConnectionLabel(Label statusConnectionLabel) {
+		this.statusConnectionLabel = statusConnectionLabel;
+	}
+
+	public MediaView getVideoFrame() {
+		return videoFrame;
+	}
+
+	public void setVideoFrame(MediaView videoFrame) {
+		this.videoFrame = videoFrame;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		BatteryInDecimal bid = new BatteryInDecimal();
-		double batteryLVL = bid.getBatterkyLevel();
-		progressbarDrone.setProgress(batteryLVL);
-		
 	}
 }

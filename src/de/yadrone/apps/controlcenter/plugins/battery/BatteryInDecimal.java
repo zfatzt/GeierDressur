@@ -1,25 +1,16 @@
+// TODO FIXME XXX RENAME THE FUCKING CLASSES
 package de.yadrone.apps.controlcenter.plugins.battery;
-
-import java.awt.Dimension;
-import java.awt.Point;
-
-import javax.swing.JPanel;
 
 import de.yadrone.apps.controlcenter.ICCPlugin;
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.navdata.BatteryListener;
+import javafx.application.Platform;
 import javafx.scene.control.ProgressBar;
 
 public class BatteryInDecimal implements ICCPlugin {
 	private IARDrone drone;
-	private int batteryLevel = 100;
+	private int batteryLevel = 20;
 	private int voltageLevel;
-
-	private ProgressBar progressBar;
-
-	public double batteryLVL() {
-		return batteryLevel;
-	}
 
 	private BatteryListener batteryListener = new BatteryListener() {
 
@@ -27,18 +18,22 @@ public class BatteryInDecimal implements ICCPlugin {
 			if (batteryLevel != BatteryInDecimal.this.getBatteryLevel()) {
 				BatteryInDecimal.this.setBatteryLevel(batteryLevel);
 			}
-			System.out.println("gg ");
+			// TODO: rename vars
+			final double toSetInBar = (double)batteryLevel/100d;
+			System.out.println(batteryLevel + " / " + toSetInBar);
+			Platform.runLater(() -> progressbarDrone.setProgress(toSetInBar));
 		}
 
 		public void voltageChanged(int vbat_raw) {
 
 		}
 	};
+	private ProgressBar progressbarDrone;
 
 	public int getBatteryLevel() {
 		return batteryLevel;
 	}
-
+	
 	public void setBatteryLevel(int batteryLevel) {
 		this.batteryLevel = batteryLevel;
 	}
@@ -51,14 +46,14 @@ public class BatteryInDecimal implements ICCPlugin {
 		this.voltageLevel = voltageLevel;
 	}
 
-	public void setProgressBar(ProgressBar batteryProgressbarDrone) {
-		this.progressBar = batteryProgressbarDrone;
-	}
-
 	@Override
 	public void activate(IARDrone drone) {
 		this.drone = drone;
 		drone.getNavDataManager().addBatteryListener(batteryListener);
+	}
+
+	public void setProgressbarDrone(ProgressBar progressbarDrone) {
+		this.progressbarDrone = progressbarDrone;
 	}
 
 }
