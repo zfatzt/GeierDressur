@@ -1,6 +1,5 @@
 package de.yadrone.apps.controlcenter;
 
-import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardLayoutPanel;
 import de.yadrone.base.IARDrone;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -48,8 +47,6 @@ public class ControlcenterController {
 
 	public void setBorderPane(BorderPane borderPane) {
 		this.borderPane = borderPane;
-		KeyboardLayoutPanel keyboard = new KeyboardLayoutPanel();
-		keyboard.activate(ardrone);
 	}
 
 	public ImageView getMyoImage() {

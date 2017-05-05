@@ -1,6 +1,7 @@
 package de.yadrone.apps.controlcenter;
 
 import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
+import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardCommandManager;
 import de.yadrone.base.ARDrone;
 import de.yadrone.base.IARDrone;
 import javafx.application.Application;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 public class openfx extends Application {
 
 	private IARDrone ardrone = null;
+	private String currentKey;
 
 	public static void main(String[] args) {
 		Application.launch(openfx.class, args);
@@ -21,16 +23,23 @@ public class openfx extends Application {
 		ardrone = new ARDrone();
 		System.out.println("Connect drone controller");
 		ardrone.start();
-
+		KeyboardCommandManager cmdManager = new KeyboardCommandManager(ardrone);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("controlcenter.fxml"));
 		Scene scene = new Scene(loader.load());
+		scene.setOnKeyPressed((event) -> {
+			cmdManager.keyPressed(event);
+			currentKey = "KEY " + event.getCharacter();
+		});
+		scene.setOnKeyReleased((event) -> {
+			cmdManager.keyReleased(event);
+			currentKey = "";
+		});
 		ControlcenterController c = loader.getController();
 		c.setArdrone(ardrone);
 
 		stage.setTitle("Control Center");
 		stage.setScene(scene);
 		stage.show();
-
 
 		BatteryInDecimal bid = new BatteryInDecimal();
 		bid.activate(ardrone);

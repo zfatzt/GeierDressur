@@ -1,12 +1,12 @@
 package de.yadrone.apps.controlcenter.plugins.keyboard;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.command.FlightAnimation;
 
-public class KeyboardCommandManager implements KeyListener {
+public class KeyboardCommandManager {
 	protected IARDrone drone;
 
 	public KeyboardCommandManager(IARDrone ardrone) {
@@ -20,146 +20,138 @@ public class KeyboardCommandManager implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		// System.out.println("Key pressed: " + e.getKeyChar()); // + " (Enter="
-		// + KeyEvent.VK_ENTER + " Space=" + KeyEvent.VK_SPACE + " S=" +
-		// KeyEvent.VK_S + " E=" + KeyEvent.VK_E + ")");
+		 System.out.println("Key pressed: " + e.getCode()); // + " (Enter="
+		// + ENTER + " Space=" + SPACE + " S=" +
+		// S + " E=" + E + ")");
 
-		int key = e.getKeyCode();
-		int mod = e.getModifiersEx();
+		KeyCode code = e.getCode();
 
-		handleCommand(key, mod);
+		handleCommand(code);
 	}
 
-	protected void handleCommand(int key, int mod) {
-		switch (key) {
-		case KeyEvent.VK_ENTER:
+	protected void handleCommand(KeyCode code) {
+		switch (code) {
+		case ENTER:
 			drone.takeOff();
+			System.out.println("aksldfhäaskfjslaödkjföasljfldaskhfjlsödkfnasldjgopasgspdaäljfdsöajfnlajksdfjaokjaoöihdajgajkfhnoashfoklasjlfjasljfjpä");
 			break;
-		case KeyEvent.VK_SPACE:
+		case SPACE:
 			drone.landing();
 			break;
-		case KeyEvent.VK_A:
+		case A:
 			drone.goLeft();
 			break;
-		case KeyEvent.VK_D:
+		case D:
 			drone.goRight();
 			break;
-		case KeyEvent.VK_W:
+		case W:
 			drone.forward();
 			break;
-		case KeyEvent.VK_S:
+		case S:
 			drone.backward();
 			break;
-		case KeyEvent.VK_E:
+		case E:
 			drone.stop();
 			break;
-		case KeyEvent.VK_R:
+		case R:
 			drone.reset();
 			break;
-		case KeyEvent.VK_LEFT:
+		case LEFT:
 			drone.spinLeft();
 			break;
-		case KeyEvent.VK_RIGHT:
+		case RIGHT:
 			drone.spinRight();
 			break;
-		case KeyEvent.VK_UP:
+		case UP:
 			drone.up();
 			break;
-		case KeyEvent.VK_DOWN:
+		case DOWN:
 			drone.down();
 			break;
-		case KeyEvent.VK_Y:
+		case Y:
 			drone.setHorizontalCamera();
-			// System.out.println("1");
 			break;
-		case KeyEvent.VK_X:
+		case X:
 			drone.setHorizontalCameraWithVertical();
-			// System.out.println("2");
 			break;
-		case KeyEvent.VK_C:
+		case C:
 			drone.setVerticalCamera();
-			// System.out.println("3");
 			break;
-		case KeyEvent.VK_V:
+		case V:
 			drone.setVerticalCameraWithHorizontal();
-			// System.out.println("4");
 			break;
-		case KeyEvent.VK_B:
+		case B:
 			drone.toggleCamera();
-			// System.out.println("5");
 			break;
-		case KeyEvent.VK_PLUS:
+		case PLUS:
 			drone.setSpeed(drone.getSpeed() + 1);
 			break;
-		case KeyEvent.VK_MINUS:
+		case MINUS:
 			drone.setSpeed(drone.getSpeed() - 1);
 			break;
-		case KeyEvent.VK_F1:
+		case F1:
 			drone.getCommandManager().animate(FlightAnimation.PHI_M30_DEG);
 			break;
-		case KeyEvent.VK_F2:
+		case F2:
 			drone.getCommandManager().animate(FlightAnimation.PHI_30_DEG);
 			break;
-		case KeyEvent.VK_F3:
+		case F3:
 			drone.getCommandManager().animate(FlightAnimation.THETA_M30_DEG);
 			break;
-		case KeyEvent.VK_F4:
+		case F4:
 			drone.getCommandManager().animate(FlightAnimation.THETA_30_DEG);
 			break;
-		case KeyEvent.VK_F5:
+		case F5:
 			drone.getCommandManager().animate(FlightAnimation.THETA_20DEG_YAW_200DEG);
 			break;
-		case KeyEvent.VK_F6:
+		case F6:
 			drone.getCommandManager().animate(FlightAnimation.THETA_20DEG_YAW_M200DEG);
 			break;
-		case KeyEvent.VK_F7:
+		case F7:
 			drone.getCommandManager().animate(FlightAnimation.TURNAROUND);
 			break;
-		case KeyEvent.VK_F8:
+		case F8:
 			drone.getCommandManager().animate(FlightAnimation.TURNAROUND_GODOWN);
 			break;
-		case KeyEvent.VK_F9:
+		case F9:
 			drone.getCommandManager().animate(FlightAnimation.YAW_SHAKE);
 			break;
-		case KeyEvent.VK_F10:
+		case F10:
 			drone.getCommandManager().animate(FlightAnimation.YAW_DANCE);
 			break;
-		case KeyEvent.VK_1:
+		case DIGIT1:
 			drone.getCommandManager().animate(FlightAnimation.PHI_DANCE);
 			break;
-		case KeyEvent.VK_2:
+		case DIGIT2:
 			drone.getCommandManager().animate(FlightAnimation.THETA_DANCE);
 			break;
-		case KeyEvent.VK_3:
+		case DIGIT3:
 			drone.getCommandManager().animate(FlightAnimation.VZ_DANCE);
 			break;
-		case KeyEvent.VK_4:
+		case DIGIT4:
 			drone.getCommandManager().animate(FlightAnimation.WAVE);
 			break;
-		case KeyEvent.VK_5:
+		case DIGIT5:
 			drone.getCommandManager().animate(FlightAnimation.PHI_THETA_MIXED);
 			break;
-		case KeyEvent.VK_6:
+		case DIGIT6:
 			drone.getCommandManager().animate(FlightAnimation.DOUBLE_PHI_THETA_MIXED);
 			break;
-		case KeyEvent.VK_7:
+		case DIGIT7:
 			drone.getCommandManager().animate(FlightAnimation.FLIP_AHEAD);
 			break;
-		case KeyEvent.VK_8:
+		case DIGIT8:
 			drone.getCommandManager().animate(FlightAnimation.FLIP_BEHIND);
 			break;
-		case KeyEvent.VK_9:
+		case DIGIT9:
 			drone.getCommandManager().animate(FlightAnimation.FLIP_LEFT);
 			break;
-		case KeyEvent.VK_0:
+		case DIGIT0:
 			drone.getCommandManager().animate(FlightAnimation.FLIP_RIGHT);
+			break;
+		default:
 			break;
 		}
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
 }
