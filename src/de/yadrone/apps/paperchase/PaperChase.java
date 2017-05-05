@@ -2,7 +2,6 @@ package de.yadrone.apps.paperchase;
 
 import de.yadrone.apps.paperchase.controller.PaperChaseAbstractController;
 import de.yadrone.apps.paperchase.controller.PaperChaseAutoController;
-import de.yadrone.apps.paperchase.controller.PaperChaseKeyboardController;
 import de.yadrone.base.ARDrone;
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.command.VideoChannel;
@@ -25,10 +24,6 @@ public class PaperChase
 		drone.getCommandManager().setVideoChannel(VideoChannel.VERT);
 		
 		PaperChaseGUI gui = new PaperChaseGUI(drone, this);
-		
-		// keyboard controller is always enabled and cannot be disabled (for safety reasons)
-		PaperChaseKeyboardController keyboardController = new PaperChaseKeyboardController(drone);
-		keyboardController.start();
 		
 		// auto controller is instantiated, but not started
 		autoController = new PaperChaseAutoController(drone);
