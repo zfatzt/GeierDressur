@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.image.Image?>
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity"
 	maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
@@ -30,11 +29,7 @@
 					prefWidth="160.0">
 					<children>
 						<ImageView fx:id="myoImage" fitHeight="265.0" fitWidth="310.0"
-							pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/myo.png" />
-							</image>
-						</ImageView>
+							pickOnBounds="true" preserveRatio="true" />
 					</children>
 				</AnchorPane>
 				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="311.0"
@@ -73,11 +68,7 @@
 					prefWidth="308.0">
 					<children>
 						<ImageView fx:id="droneImage" fitHeight="265.0"
-							fitWidth="310.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/myo.png" />
-							</image>
-						</ImageView>
+							fitWidth="310.0" pickOnBounds="true" preserveRatio="true" />
 					</children>
 				</AnchorPane>
 				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0"

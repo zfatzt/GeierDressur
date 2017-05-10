@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 public class openfx extends Application {
 
 	private IARDrone ardrone = null;
+	private String currentKey;
 
 	public static void main(String[] args) {
 		Application.launch(openfx.class, args);
@@ -25,12 +26,13 @@ public class openfx extends Application {
 		KeyboardCommandManager cmdManager = new KeyboardCommandManager(ardrone);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("controlcenter.fxml"));
 		Scene scene = new Scene(loader.load());
-		
 		scene.setOnKeyPressed((event) -> {
 			cmdManager.keyPressed(event);
+			currentKey = "KEY " + event.getCharacter();
 		});
 		scene.setOnKeyReleased((event) -> {
 			cmdManager.keyReleased(event);
+			currentKey = "";
 		});
 		ControlcenterController c = loader.getController();
 		c.setArdrone(ardrone);
@@ -38,7 +40,7 @@ public class openfx extends Application {
 		stage.setTitle("Control Center");
 		stage.setScene(scene);
 		stage.show();
-		
+
 		BatteryInDecimal bid = new BatteryInDecimal();
 		bid.activate(ardrone);
 		bid.setProgressbarDrone(c.getProgressbarDrone());

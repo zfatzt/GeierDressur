@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardLayoutPanel;
 import de.yadrone.apps.controlcenter.plugins.video.VideoCanvas;
 import de.yadrone.base.ARDrone;
 
@@ -109,6 +110,9 @@ public class CCFrame extends JFrame {
 		// Layout
 		panelVideoTop.setLayout(new BorderLayout());
 
+		// Keyboard stearing
+		KeyboardLayoutPanel keyboard = new KeyboardLayoutPanel();
+		keyboard.activate(drone);
 
 		// Video output
 		VideoCanvas video = new VideoCanvas(drone);

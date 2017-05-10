@@ -41,8 +41,6 @@ public class ControlcenterController {
 	@FXML
 	private MediaView videoFrame;
 
-	
-	
 	public BorderPane getBorderPane() {
 		return borderPane;
 	}
