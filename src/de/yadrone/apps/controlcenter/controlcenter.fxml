@@ -3,122 +3,82 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.image.Image?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity"
-	maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-	prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.yadrone.apps.controlcenter.ControlcenterController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.yadrone.apps.controlcenter.ControlcenterController">
 	<top>
-		<Label alignment="CENTER" prefHeight="74.0" prefWidth="543.0"
-			text="GeierDressur" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+		<Label alignment="CENTER" prefHeight="74.0" prefWidth="543.0" text="GeierDressur" textAlignment="RIGHT" BorderPane.alignment="CENTER">
 			<font>
 				<Font name="TitilliumText25L-600wt" size="51.0" />
 			</font>
 		</Label>
 	</top>
 	<left>
-		<SplitPane dividerPositions="0.3702" orientation="VERTICAL"
-			prefHeight="678.0" prefWidth="316.0" BorderPane.alignment="CENTER">
+		<SplitPane dividerPositions="0.3702" orientation="VERTICAL" prefHeight="678.0" prefWidth="316.0" BorderPane.alignment="CENTER">
 			<items>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0"
-					prefWidth="160.0">
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
 					<children>
 						<ImageView fx:id="myoImage" fitHeight="265.0" fitWidth="310.0"
-							pickOnBounds="true" preserveRatio="true">
+	pickOnBounds="true" preserveRatio="true">
 							<image>
 								<Image url="@img/myo.png" />
 							</image>
 						</ImageView>
 					</children>
 				</AnchorPane>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="311.0"
-					prefWidth="308.0">
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="311.0" prefWidth="308.0">
 					<children>
-						<Label fx:id="armActive" layoutX="94.0" layoutY="118.0"
-							prefHeight="25.0" prefWidth="200.0" text="Label"
-							AnchorPane.bottomAnchor="299.0" />
-						<Label layoutX="6.0" layoutY="118.0" prefHeight="25.0"
-							prefWidth="83.0" text="Arm:" AnchorPane.bottomAnchor="299.0"
-							AnchorPane.topAnchor="118.0" />
-						<ProgressBar fx:id="progressbarMyo" layoutX="94.0"
-							layoutY="50.0" prefHeight="25.0" prefWidth="200.0" progress="0.0"
-							style=" -fx-accent:  LIGHTGREEN;" />
-						<Label layoutX="6.0" layoutY="50.0" prefHeight="25.0"
-							prefWidth="83.0" text="Battery Level:" />
-						<Label layoutX="6.0" layoutY="83.0" prefHeight="25.0"
-							prefWidth="83.0" text="Gesture:" AnchorPane.bottomAnchor="334.0"
-							AnchorPane.topAnchor="83.0" />
-						<Label fx:id="gesturePerformed" layoutX="94.0" layoutY="83.0"
-							prefHeight="25.0" prefWidth="200.0" text="Label" />
-						<Label layoutX="6.0" layoutY="156.0" prefHeight="25.0"
-							prefWidth="83.0" text="Status:" />
-						<Label fx:id="statusMyo" layoutX="94.0" layoutY="156.0"
-							prefHeight="25.0" prefWidth="200.0" text="Label" />
+						<Label fx:id="armActive" layoutX="94.0" layoutY="118.0" prefHeight="25.0" prefWidth="200.0" text="Label" AnchorPane.bottomAnchor="299.0" />
+						<Label layoutX="6.0" layoutY="118.0" prefHeight="25.0" prefWidth="83.0" text="Arm:" AnchorPane.bottomAnchor="299.0" AnchorPane.topAnchor="118.0" />
+						<ProgressBar fx:id="progressbarMyo" layoutX="94.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" progress="0.0" style=" -fx-accent:  LIGHTGREEN;" />
+						<Label layoutX="6.0" layoutY="50.0" prefHeight="25.0" prefWidth="83.0" text="Battery Level:" />
+						<Label layoutX="6.0" layoutY="83.0" prefHeight="25.0" prefWidth="83.0" text="Gesture:" AnchorPane.bottomAnchor="334.0" AnchorPane.topAnchor="83.0" />
+						<Label fx:id="gesturePerformed" layoutX="94.0" layoutY="83.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
+						<Label layoutX="6.0" layoutY="156.0" prefHeight="25.0" prefWidth="83.0" text="Status:" />
+						<Label fx:id="statusMyo" layoutX="94.0" layoutY="156.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
 					</children>
 				</AnchorPane>
 			</items>
 		</SplitPane>
 	</left>
 	<right>
-		<SplitPane dividerPositions="0.3702" orientation="VERTICAL"
-			prefHeight="725.0" prefWidth="310.0" BorderPane.alignment="CENTER">
+		<SplitPane dividerPositions="0.3702" orientation="VERTICAL" prefHeight="725.0" prefWidth="310.0" BorderPane.alignment="CENTER">
 			<items>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0"
-					prefWidth="308.0">
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="308.0">
 					<children>
-						<ImageView fx:id="droneImage" fitHeight="265.0"
-							fitWidth="310.0" pickOnBounds="true" preserveRatio="true">
+						<ImageView fx:id="droneImage" fitHeight="265.0" fitWidth="310.0" pickOnBounds="true" preserveRatio="true">
 							<image>
 								<Image url="@img/drone.jpg" />
 							</image>
 						</ImageView>
 					</children>
 				</AnchorPane>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0"
-					prefWidth="323.0">
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="323.0">
 					<children>
-						<Label layoutX="14.0" layoutY="51.0" prefHeight="25.0"
-							prefWidth="83.0" text="Battery Level:" />
-						<ProgressBar fx:id="progressbarDrone" layoutX="100.0"
-							layoutY="51.0" prefHeight="25.0" prefWidth="200.0" progress="0.0"
-							style=" -fx-accent:  LIGHTGREEN;" />
-						<Label layoutX="14.0" layoutY="81.0" prefHeight="25.0"
-							prefWidth="83.0" text="Height:" AnchorPane.bottomAnchor="336.0"
-							AnchorPane.topAnchor="81.0" />
-						<Label fx:id="heightDrone" layoutX="100.0" layoutY="81.0"
-							prefHeight="25.0" prefWidth="200.0" text="Label"
-							AnchorPane.bottomAnchor="336.0" AnchorPane.topAnchor="81.0" />
-						<Label fx:id="speedDrone" layoutX="100.0" layoutY="118.0"
-							prefHeight="25.0" prefWidth="200.0" text="Label"
-							AnchorPane.bottomAnchor="299.0" AnchorPane.topAnchor="118.0" />
-						<Label layoutX="14.0" layoutY="118.0" prefHeight="25.0"
-							prefWidth="83.0" text="Speed:" AnchorPane.bottomAnchor="299.0"
-							AnchorPane.topAnchor="118.0" />
-						<Label layoutX="14.0" layoutY="150.0" prefHeight="25.0"
-							prefWidth="83.0" text="Status:" />
-						<Label fx:id="statusVideoLabel" layoutX="100.0" layoutY="150.0"
-							prefHeight="25.0" prefWidth="200.0" text="Navdata" />
-						<Label fx:id="statusNavdataLabel" layoutX="100.0" layoutY="175.0"
-							prefHeight="25.0" prefWidth="200.0" text="Label" />
-						<Label fx:id="statusConnectionLabel" layoutX="100.0"
-							layoutY="200.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
+						<Label layoutX="14.0" layoutY="51.0" prefHeight="25.0" prefWidth="83.0" text="Battery Level:" />
+						<ProgressBar fx:id="progressbarDrone" layoutX="100.0" layoutY="51.0" prefHeight="25.0" prefWidth="200.0" progress="0.0" style=" -fx-accent:  LIGHTGREEN;" />
+						<Label layoutX="14.0" layoutY="81.0" prefHeight="25.0" prefWidth="83.0" text="Height:" AnchorPane.bottomAnchor="336.0" AnchorPane.topAnchor="81.0" />
+						<Label fx:id="heightDrone" layoutX="100.0" layoutY="81.0" prefHeight="25.0" prefWidth="200.0" text="Label" AnchorPane.bottomAnchor="336.0" AnchorPane.topAnchor="81.0" />
+						<Label fx:id="speedDrone" layoutX="100.0" layoutY="118.0" prefHeight="25.0" prefWidth="200.0" text="Label" AnchorPane.bottomAnchor="299.0" AnchorPane.topAnchor="118.0" />
+						<Label layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="83.0" text="Speed:" AnchorPane.bottomAnchor="299.0" AnchorPane.topAnchor="118.0" />
+						<Label layoutX="14.0" layoutY="150.0" prefHeight="25.0" prefWidth="83.0" text="Status:" />
+						<Label fx:id="statusVideoLabel" layoutX="100.0" layoutY="150.0" prefHeight="25.0" prefWidth="200.0" text="Navdata" />
+						<Label fx:id="statusNavdataLabel" layoutX="100.0" layoutY="175.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
+						<Label fx:id="statusConnectionLabel" layoutX="100.0" layoutY="200.0" prefHeight="25.0" prefWidth="200.0" text="Label" />
 					</children>
 				</AnchorPane>
 			</items>
 		</SplitPane>
 	</right>
-	<center>
-		<MediaView fx:id="videoFrame" fitHeight="360.0" fitWidth="640.0"
-			BorderPane.alignment="CENTER" />
-	</center>
 	<bottom>
-		<Label text="©by Laurent Mouchart, Tobias Fatzer"
-			BorderPane.alignment="CENTER" />
+		<Label text="©by Laurent Mouchart, Tobias Fatzer" BorderPane.alignment="CENTER" />
 	</bottom>
+   <center>
+      <Pane fx:id="videoPane" maxHeight="360.0" maxWidth="640.0" minHeight="360.0" minWidth="640.0" prefHeight="360.0" prefWidth="640.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
