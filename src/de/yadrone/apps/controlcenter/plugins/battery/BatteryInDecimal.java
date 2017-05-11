@@ -9,7 +9,7 @@ import javafx.scene.control.ProgressBar;
 
 public class BatteryInDecimal implements ICCPlugin {
 	private IARDrone drone;
-	private int batteryLevel = 100;
+	private int batteryLevel = 20;
 	private int voltageLevel;
 
 	private BatteryListener batteryListener = new BatteryListener() {
