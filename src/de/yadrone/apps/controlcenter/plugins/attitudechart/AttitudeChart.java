@@ -2,7 +2,6 @@ package de.yadrone.apps.controlcenter.plugins.attitudechart;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Font;
 import java.util.Date;
 
 import org.jfree.chart.JFreeChart;

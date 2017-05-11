@@ -1,7 +1,5 @@
 package de.yadrone.base.navdata;
 
-import java.util.ArrayList;
-
 /**
  * @brief Values for the detection type on drone cameras.
  */

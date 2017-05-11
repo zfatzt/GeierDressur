@@ -13,7 +13,6 @@ import org.jfree.chart.ChartPanel;
 
 import de.yadrone.apps.controlcenter.ICCPlugin;
 import de.yadrone.base.IARDrone;
-import de.yadrone.base.configuration.ConfigurationListener;
 import de.yadrone.base.navdata.Altitude;
 import de.yadrone.base.navdata.AltitudeListener;
 

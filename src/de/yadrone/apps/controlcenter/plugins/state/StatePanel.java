@@ -9,7 +9,6 @@ import java.awt.Point;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-
 import de.yadrone.apps.controlcenter.ICCPlugin;
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.navdata.ControlState;

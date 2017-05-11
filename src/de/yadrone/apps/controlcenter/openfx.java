@@ -1,7 +1,13 @@
 package de.yadrone.apps.controlcenter;
 
+	
+
+import com.thalmic.myo.Hub;
+import com.thalmic.myo.Myo;
+
 import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
 import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardCommandManager;
+import de.yadrone.apps.controlcenter.plugins.myo.BatteryListenerMyo;
 import de.yadrone.base.ARDrone;
 import de.yadrone.base.IARDrone;
 import javafx.application.Application;
@@ -22,6 +28,17 @@ public class openfx extends Application {
 	public void start(Stage stage) throws Exception {
 		ardrone = new ARDrone();
 		System.out.println("Connect drone controller");
+		
+		Hub hub = new Hub("com.example.hello-myo");
+		System.out.println("Attempting to find a Myo.....");
+		Myo myo = hub.waitForMyo(100000);
+
+		if (myo == null || ardrone == null) {
+			throw new RuntimeException("Unable to find Myo or no Connection to Drone");
+		}
+
+		
+		
 		ardrone.start();
 		KeyboardCommandManager cmdManager = new KeyboardCommandManager(ardrone);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("controlcenter.fxml"));
@@ -36,6 +53,15 @@ public class openfx extends Application {
 		});
 		ControlcenterController c = loader.getController();
 		c.setArdrone(ardrone);
+		
+		hub.addListener(new BatteryListenerMyo(c.getProgressbarMyo()));
+		Runnable runnable = () -> {
+			while (true) {
+				hub.run(10);
+				myo.requestBatteryLevel();
+			}
+		};
+		new Thread(runnable).start();
 
 		stage.setTitle("Control Center");
 		stage.setScene(scene);

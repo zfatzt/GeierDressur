@@ -1,13 +1,11 @@
 package de.yadrone.apps.controlcenter;
 
-import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import de.yadrone.base.IARDrone;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;

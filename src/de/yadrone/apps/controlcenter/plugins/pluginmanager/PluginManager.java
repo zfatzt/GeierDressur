@@ -1,28 +1,16 @@
 package de.yadrone.apps.controlcenter.plugins.pluginmanager;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import org.reflections.Reflections;
 

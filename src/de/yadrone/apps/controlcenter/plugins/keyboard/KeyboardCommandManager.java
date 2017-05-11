@@ -1,10 +1,9 @@
 package de.yadrone.apps.controlcenter.plugins.keyboard;
 
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.command.FlightAnimation;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class KeyboardCommandManager {
 	protected IARDrone drone;

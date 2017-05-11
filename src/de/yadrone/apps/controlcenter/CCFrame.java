@@ -17,7 +17,6 @@ import javax.swing.UIManager;
 
 import de.yadrone.apps.controlcenter.plugins.video.VideoCanvas;
 import de.yadrone.base.ARDrone;
-import gui_desktop.KeyboardLayoutPanel;
 
 public class CCFrame extends JFrame {
 

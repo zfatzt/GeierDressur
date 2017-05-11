@@ -1,6 +1,5 @@
 package de.yadrone.base.navdata;
 
-import java.util.ArrayList;
 import java.util.EventListener;
 
 

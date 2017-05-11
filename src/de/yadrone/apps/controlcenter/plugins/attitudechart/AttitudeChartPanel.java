@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 
 import org.jfree.chart.ChartPanel;
 
-
 import de.yadrone.apps.controlcenter.ICCPlugin;
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.navdata.AttitudeListener;

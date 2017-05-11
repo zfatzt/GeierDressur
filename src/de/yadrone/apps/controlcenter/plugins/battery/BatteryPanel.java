@@ -10,7 +10,6 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
-
 import de.yadrone.apps.controlcenter.ICCPlugin;
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.navdata.BatteryListener;
