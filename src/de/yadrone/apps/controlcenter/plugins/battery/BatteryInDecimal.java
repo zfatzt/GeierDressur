@@ -20,7 +20,6 @@ public class BatteryInDecimal implements ICCPlugin {
 			}
 			// TODO: rename vars
 			final double toSetInBar = (double)batteryLevel/100d;
-			System.out.println(batteryLevel + " / " + toSetInBar);
 			Platform.runLater(() -> progressbarDrone.setProgress(toSetInBar));
 		}
 
