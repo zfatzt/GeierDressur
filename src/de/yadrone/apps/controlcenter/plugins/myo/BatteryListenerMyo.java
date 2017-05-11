@@ -7,44 +7,127 @@ import com.thalmic.myo.Pose;
 import com.thalmic.myo.Quaternion;
 import com.thalmic.myo.Vector3;
 import com.thalmic.myo.enums.Arm;
+import com.thalmic.myo.enums.PoseType;
+import com.thalmic.myo.enums.VibrationType;
 import com.thalmic.myo.enums.WarmupResult;
 import com.thalmic.myo.enums.WarmupState;
 import com.thalmic.myo.enums.XDirection;
 
 import javafx.application.Platform;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-public class BatteryListenerMyo implements DeviceListener {
+public class BatteryListenerMyo extends Thread implements DeviceListener {
 
 	private ProgressBar progressbarMyo;
-	
-	public BatteryListenerMyo(ProgressBar progressbarMyo2) {
+	private Pose currentPose;
+	private Label poseLabel;
+	private Label armLabel;
+	private Label connectionLabel;
+	private Label pairLabel;
+	private Label warmupLabel;
+	Image greenIcon = new Image(this.getClass().getResourceAsStream("dot_green.png"));
+	Image redIcon = new Image(this.getClass().getResourceAsStream("dot_red.png"));
+
+	public Label getArmLabel() {
+		return armLabel;
+	}
+
+	public void setArmLabel(Label arm) {
+		this.armLabel = arm;
+	}
+
+	public Label getPoseLabel() {
+		return poseLabel;
+	}
+
+	public void setPoseLabel(Label poseLabel) {
+		this.poseLabel = poseLabel;
+	}
+
+	public ProgressBar getProgressbarMyo() {
+		return progressbarMyo;
+	}
+
+	public BatteryListenerMyo(ProgressBar progressbarMyo2, Label poseLabel, Label armLabel, Label connectionLabel,
+		Label pairLabel, Label warmupLabel) {
+		pairLabel.setGraphic(new ImageView(greenIcon));
+		pairLabel.setText("Pair State");
+		connectionLabel.setGraphic(new ImageView(redIcon));
+		connectionLabel.setText("Connection State");
+		warmupLabel.setGraphic(new ImageView(greenIcon));
+		warmupLabel.setText("Warmup State");
+
 		setProgressbarMyo(progressbarMyo2);
+		setPoseLabel(poseLabel);
+		setArmLabel(armLabel);
+		setConnectionLabel(connectionLabel);
+		setPairLabel(pairLabel);
+		setWarmupLabel(warmupLabel);
+	}
+
+	public Label getConnectionLabel() {
+		return connectionLabel;
+	}
+
+	public void setConnectionLabel(Label connectionLabel) {
+		this.connectionLabel = connectionLabel;
+	}
+
+	public Label getPairLabel() {
+		return pairLabel;
+	}
+
+	public void setPairLabel(Label pairLabel) {
+		this.pairLabel = pairLabel;
+	}
+
+	public Label getWarmupLabel() {
+		return warmupLabel;
+	}
+
+	public void setWarmupLabel(Label warmupLabel) {
+		this.warmupLabel = warmupLabel;
 	}
 
 	@Override
 	public void onPair(Myo myo, long timestamp, FirmwareVersion firmwareVersion) {
-
+		pairLabel.setGraphic(new ImageView(greenIcon));
+		pairLabel.setText("Pair State");
 	}
 
 	@Override
 	public void onUnpair(Myo myo, long timestamp) {
-
+		pairLabel.setGraphic(new ImageView(redIcon));
+		pairLabel.setText("Pair State");
 	}
 
 	@Override
 	public void onConnect(Myo myo, long timestamp, FirmwareVersion firmwareVersion) {
-
+		connectionLabel.setGraphic(new ImageView(greenIcon));
+		connectionLabel.setText("Connection State");
 	}
 
 	@Override
 	public void onDisconnect(Myo myo, long timestamp) {
-
+		connectionLabel.setGraphic(new ImageView(redIcon));
+		connectionLabel.setText("Connection State");
 	}
 
 	@Override
 	public void onArmSync(Myo myo, long timestamp, Arm arm, XDirection xDirection, float rotation,
 			WarmupState warmupState) {
+		if (arm != null) {
+			String armString = String.valueOf(arm == Arm.ARM_LEFT ? "L" : "R");
+			Platform.runLater(() -> this.armLabel.setText(armString));
+			System.out.println(armString);
+		} else {
+			String armString = "?";
+			this.armLabel.setText(armString);
+			System.out.println(armString);
+		}
 
 	}
 
@@ -55,17 +138,23 @@ public class BatteryListenerMyo implements DeviceListener {
 
 	@Override
 	public void onUnlock(Myo myo, long timestamp) {
-		System.out.println("Unock");
+		System.out.println("Unlocked");
 	}
 
 	@Override
 	public void onLock(Myo myo, long timestamp) {
-		System.out.println("Lock");
+		System.out.println("Locked");
 	}
 
 	@Override
 	public void onPose(Myo myo, long timestamp, Pose pose) {
-
+		currentPose = pose;
+		String poseTypeString = currentPose.getType().toString();
+		Platform.runLater(() -> this.poseLabel.setText(poseTypeString));
+		System.out.println(poseTypeString);
+		if (currentPose.getType() == PoseType.FIST) {
+			myo.vibrate(VibrationType.VIBRATION_MEDIUM);
+		}
 	}
 
 	@Override
@@ -92,8 +181,7 @@ public class BatteryListenerMyo implements DeviceListener {
 	@Override
 	public void onBatteryLevelReceived(Myo myo, long timestamp, int level) {
 		float toSetInProgressbar = level / 100f;
-		Platform.runLater(() -> progressbarMyo.setProgress(toSetInProgressbar));
-		System.out.println(toSetInProgressbar);
+		progressbarMyo.setProgress(toSetInProgressbar);
 	}
 
 	@Override
@@ -103,10 +191,11 @@ public class BatteryListenerMyo implements DeviceListener {
 
 	@Override
 	public void onWarmupCompleted(Myo myo, long timestamp, WarmupResult warmupResult) {
-		System.out.println("Warmed up");
+		warmupLabel.setGraphic(new ImageView(greenIcon));
+		warmupLabel.setText("Warmup State");
 	}
-	
-	public void setProgressbarMyo(ProgressBar progressBarMyo){
+
+	public void setProgressbarMyo(ProgressBar progressBarMyo) {
 		this.progressbarMyo = progressBarMyo;
 	}
 

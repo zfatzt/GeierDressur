@@ -37,13 +37,19 @@ public class ControlcenterController implements Initializable {
 	@FXML
 	private Label speedDrone;
 	@FXML
-	private Label statusVideoLabel;
+	private Label statusVideoLabelDrone;
 	@FXML
-	private Label statusNavdataLabel;
+	private Label statusNavdataLabelDrone;
 	@FXML
-	private Label statusConnectionLabel;
+	private Label statusConnectionLabelDrone;
 	@FXML
 	private ImageView video;
+	@FXML
+	private Label statusPairLabelMyo;
+	@FXML
+	private Label statusWarmupLabelMyo;
+	@FXML
+	private Label statusConnectionLabelMyo;
 
 	
 	public BorderPane getBorderPane() {
@@ -64,6 +70,14 @@ public class ControlcenterController implements Initializable {
 
 	public Label getArmActive() {
 		return armActive;
+	}
+
+	public Label getStatusVideoLabelDrone() {
+		return statusVideoLabelDrone;
+	}
+
+	public void setStatusVideoLabelDrone(Label statusVideoLabelDrone) {
+		this.statusVideoLabelDrone = statusVideoLabelDrone;
 	}
 
 	public void setArmActive(Label armActive) {
@@ -126,28 +140,44 @@ public class ControlcenterController implements Initializable {
 		this.speedDrone = speedDrone;
 	}
 
-	public Label getStatusVideoLabel() {
-		return statusVideoLabel;
+	public Label getStatusNavdataLabelDrone() {
+		return statusNavdataLabelDrone;
 	}
 
-	public void setStatusVideoLabel(Label statusVideoLabel) {
-		this.statusVideoLabel = statusVideoLabel;
+	public void setStatusNavdataLabelDrone(Label statusNavdataLabelDrone) {
+		this.statusNavdataLabelDrone = statusNavdataLabelDrone;
 	}
 
-	public Label getStatusNavdataLabel() {
-		return statusNavdataLabel;
+	public Label getStatusConnectionLabelDrone() {
+		return statusConnectionLabelDrone;
 	}
 
-	public void setStatusNavdataLabel(Label statusNavdataLabel) {
-		this.statusNavdataLabel = statusNavdataLabel;
+	public void setStatusConnectionLabelDrone(Label statusConnectionLabelDrone) {
+		this.statusConnectionLabelDrone = statusConnectionLabelDrone;
 	}
 
-	public Label getStatusConnectionLabel() {
-		return statusConnectionLabel;
+	public Label getStatusPairLabelMyo() {
+		return statusPairLabelMyo;
 	}
 
-	public void setStatusConnectionLabel(Label statusConnectionLabel) {
-		this.statusConnectionLabel = statusConnectionLabel;
+	public void setStatusPairLabelMyo(Label statusPairLabelMyo) {
+		this.statusPairLabelMyo = statusPairLabelMyo;
+	}
+
+	public Label getStatusWarmupLabelMyo() {
+		return statusWarmupLabelMyo;
+	}
+
+	public void setStatusWarmupLabelMyo(Label statusWarmupLabelMyo) {
+		this.statusWarmupLabelMyo = statusWarmupLabelMyo;
+	}
+
+	public Label getStatusConnectionLabelMyo() {
+		return statusConnectionLabelMyo;
+	}
+
+	public void setStatusConnectionLabelMyo(Label statusConnectionLabelMyo) {
+		this.statusConnectionLabelMyo = statusConnectionLabelMyo;
 	}
 
 	public IARDrone getArdrone() {

@@ -43,6 +43,7 @@ public class DataCollector extends AbstractDeviceListener {
 		currentPose = pose;
 		if (currentPose.getType() == PoseType.FIST) {
 			myo.vibrate(VibrationType.VIBRATION_MEDIUM);
+			
 		}
 	}
 

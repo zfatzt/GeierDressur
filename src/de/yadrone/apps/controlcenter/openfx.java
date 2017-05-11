@@ -3,9 +3,12 @@ package de.yadrone.apps.controlcenter;
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
 
+import de.yadrone.apps.controlcenter.plugins.altitude.Attitude;
 import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
+import de.yadrone.apps.controlcenter.plugins.connection.ConnectionState;
 import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardCommandManager;
 import de.yadrone.apps.controlcenter.plugins.myo.BatteryListenerMyo;
+import de.yadrone.apps.controlcenter.plugins.speed.SpeedLabel;
 import de.yadrone.apps.controlcenter.plugins.video.Video;
 import de.yadrone.base.ARDrone;
 import de.yadrone.base.IARDrone;
@@ -51,22 +54,39 @@ public class openfx extends Application {
 		ControlcenterController c = loader.getController();
 		c.setArdrone(ardrone);
 
-		hub.addListener(new BatteryListenerMyo(c.getProgressbarMyo()));
+		hub.addListener(new BatteryListenerMyo(c.getProgressbarMyo(), c.getGesturePerformed(), c.getArmActive(),
+				c.getStatusConnectionLabelMyo(), c.getStatusPairLabelMyo(), c.getStatusWarmupLabelMyo()));
+		
 		Runnable runnable = () -> {
 			while (true) {
 				hub.run(10);
 				myo.requestBatteryLevel();
 			}
 		};
-		new Thread(runnable).start();
 
-		stage.setTitle("Control Center");
-		stage.setScene(scene);
-		stage.show();
+		new Thread(runnable).start();
 
 		BatteryInDecimal bid = new BatteryInDecimal();
 		bid.activate(ardrone);
 		bid.setProgressbarDrone(c.getProgressbarDrone());
+
+		Attitude attitude = new Attitude();
+		attitude.activate(ardrone);
+		attitude.setAttitudeLabel(c.getHeightDrone());
+
+		SpeedLabel speed = new SpeedLabel();
+		speed.activate(ardrone);
+		speed.setSpeedLabel(c.getSpeedDrone());
+
+		ConnectionState cs = new ConnectionState();
+		cs.activate(ardrone);
+		cs.setNavadataStateLabel(c.getStatusNavdataLabelDrone());
+		cs.setVideoStateLabel(c.getStatusVideoLabelDrone());
+		cs.setCommandStateLabel(c.getStatusConnectionLabelDrone());
+
+		stage.setTitle("Control Center");
+		stage.setScene(scene);
+		stage.show();
 
 		Video video = new Video(ardrone, c);
 		video.start();
