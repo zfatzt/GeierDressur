@@ -3,6 +3,7 @@ package de.yadrone.apps.controlcenter;
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
 
+import com.thalmic.myo.enums.LockingPolicy;
 import de.yadrone.apps.controlcenter.plugins.altitude.Attitude;
 import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
 import de.yadrone.apps.controlcenter.plugins.connection.ConnectionState;
@@ -35,7 +36,7 @@ public class openfx extends Application {
 		Hub hub = new Hub("com.example.hello-myo");
 		System.out.println("Attempting to find a Myo.....");
 		Myo myo = hub.waitForMyo(100000);
-
+		hub.setLockingPolicy(LockingPolicy.LOCKING_POLICY_NONE);
 		if (myo == null || ardrone == null) {
 			throw new RuntimeException("Unable to find Myo or no Connection to Drone");
 		}
