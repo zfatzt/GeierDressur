@@ -149,6 +149,7 @@ public class KeyboardCommandManager {
 			drone.getCommandManager().animate(FlightAnimation.FLIP_RIGHT);
 			break;
 		default:
+			drone.hover();
 			break;
 		}
 	}

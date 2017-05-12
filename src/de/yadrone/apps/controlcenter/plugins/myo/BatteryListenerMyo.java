@@ -13,6 +13,8 @@ import com.thalmic.myo.enums.WarmupResult;
 import com.thalmic.myo.enums.WarmupState;
 import com.thalmic.myo.enums.XDirection;
 
+import de.yadrone.base.IARDrone;
+import de.yadrone.base.command.FlightAnimation;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -30,6 +32,7 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
 	private Label warmupLabel;
 	Image greenIcon = new Image(this.getClass().getResourceAsStream("dot_green.png"));
 	Image redIcon = new Image(this.getClass().getResourceAsStream("dot_red.png"));
+	private IARDrone drone;
 
 	public Label getArmLabel() {
 		return armLabel;
@@ -52,7 +55,7 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
 	}
 
 	public BatteryListenerMyo(ProgressBar progressbarMyo2, Label poseLabel, Label armLabel, Label connectionLabel,
-		Label pairLabel, Label warmupLabel) {
+			Label pairLabel, Label warmupLabel, IARDrone drone) {
 		pairLabel.setGraphic(new ImageView(greenIcon));
 		pairLabel.setText("Pair State");
 		connectionLabel.setGraphic(new ImageView(redIcon));
@@ -66,6 +69,8 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
 		setConnectionLabel(connectionLabel);
 		setPairLabel(pairLabel);
 		setWarmupLabel(warmupLabel);
+		this.drone = drone;
+
 	}
 
 	public Label getConnectionLabel() {
@@ -127,7 +132,7 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
 			String armString = "?";
 			this.armLabel.setText(armString);
 			System.out.println(armString);
-		}
+		
 
 	}
 
@@ -155,6 +160,29 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
 		if (currentPose.getType() == PoseType.FIST) {
 			myo.vibrate(VibrationType.VIBRATION_MEDIUM);
 		}
+		switch (pose.getType()) {
+		case WAVE_IN:
+			drone.spinLeft();
+			break;
+		case WAVE_OUT:
+			drone.spinRight();
+			break;
+		case FIST:
+			drone.landing();
+			break;
+		case DOUBLE_TAP:
+			drone.start();
+			break;
+		case REST:
+			drone.hover();
+			break;
+		case FINGERS_SPREAD:
+			drone.getCommandManager().animate(FlightAnimation.WAVE);
+			break;
+		default:
+			break;
+		}
+
 	}
 
 	@Override
@@ -191,8 +219,10 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
 
 	@Override
 	public void onWarmupCompleted(Myo myo, long timestamp, WarmupResult warmupResult) {
-		warmupLabel.setGraphic(new ImageView(greenIcon));
-		warmupLabel.setText("Warmup State");
+		Platform.runLater(() -> {
+			warmupLabel.setGraphic(new ImageView(greenIcon));
+			warmupLabel.setText("Warmup State");
+		});
 	}
 
 	public void setProgressbarMyo(ProgressBar progressBarMyo) {

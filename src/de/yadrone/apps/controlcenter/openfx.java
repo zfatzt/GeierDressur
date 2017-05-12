@@ -31,6 +31,7 @@ public class openfx extends Application {
 		ardrone = new ARDrone();
 		System.out.println("Connect drone controller");
 
+		
 		Hub hub = new Hub("com.example.hello-myo");
 		System.out.println("Attempting to find a Myo.....");
 		Myo myo = hub.waitForMyo(100000);
@@ -39,6 +40,7 @@ public class openfx extends Application {
 			throw new RuntimeException("Unable to find Myo or no Connection to Drone");
 		}
 
+		
 		ardrone.start();
 		KeyboardCommandManager cmdManager = new KeyboardCommandManager(ardrone);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("controlcenter.fxml"));
@@ -55,7 +57,7 @@ public class openfx extends Application {
 		c.setArdrone(ardrone);
 
 		hub.addListener(new BatteryListenerMyo(c.getProgressbarMyo(), c.getGesturePerformed(), c.getArmActive(),
-				c.getStatusConnectionLabelMyo(), c.getStatusPairLabelMyo(), c.getStatusWarmupLabelMyo()));
+				c.getStatusConnectionLabelMyo(), c.getStatusPairLabelMyo(), c.getStatusWarmupLabelMyo(), ardrone));
 		
 		Runnable runnable = () -> {
 			while (true) {
@@ -63,7 +65,6 @@ public class openfx extends Application {
 				myo.requestBatteryLevel();
 			}
 		};
-
 		new Thread(runnable).start();
 
 		BatteryInDecimal bid = new BatteryInDecimal();

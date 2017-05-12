@@ -45,7 +45,7 @@ public final class Pose {
 
     @Override
     public String toString() {
-	return " " + type + " ";
+	return "" + type + "";
     }
 
 }

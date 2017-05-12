@@ -19,9 +19,9 @@ public final class Myo {
 	public native void requestRssi();
 
 	public native void requestBatteryLevel();
-	
+
 	public void unlock(UnlockType unlockType) {
-		unlock(unlockType.ordinal());
+		unlock(UnlockType.UNLOCK_TIMED);
 	}
 
 	private native void unlock(int unlockType);
