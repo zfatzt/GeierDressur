@@ -33,9 +33,9 @@ public class DataCollector extends AbstractDeviceListener {
 		double pitch = Math.asin(2.0f * (normalized.getW() * normalized.getY() - normalized.getZ() * normalized.getX()));
 		double yaw = Math.atan2(2.0f * (normalized.getW() * normalized.getZ() + normalized.getX() * normalized.getY()), 1.0f - 2.0f * (normalized.getY() * normalized.getY() + normalized.getZ() * normalized.getZ()));
 
-		rollW = ((roll + Math.PI) / (Math.PI * 2.0) * SCALE);
-		pitchW = ((pitch + Math.PI / 2.0) / Math.PI * SCALE);
-		yawW = ((yaw + Math.PI) / (Math.PI * 2.0) * SCALE);
+		this.rollW = ((roll + Math.PI) / (Math.PI * 2.0) * SCALE);
+		this.pitchW = ((pitch + Math.PI / 2.0) / Math.PI * SCALE);
+		this.yawW = ((yaw + Math.PI) / (Math.PI * 2.0) * SCALE);
 	}
 
 	@Override
@@ -84,6 +84,30 @@ public class DataCollector extends AbstractDeviceListener {
 		builder.append(armString);
 		builder.append(poseString);
 		return builder.toString();
+	}
+
+	public double getRollW() {
+		return rollW;
+	}
+
+	public void setRollW(double rollW) {
+		this.rollW = rollW;
+	}
+
+	public double getPitchW() {
+		return pitchW;
+	}
+
+	public void setPitchW(double pitchW) {
+		this.pitchW = pitchW;
+	}
+
+	public double getYawW() {
+		return yawW;
+	}
+
+	public void setYawW(double yawW) {
+		this.yawW = yawW;
 	}
 
 	private String repeatCharacter(char character, int numOfTimes) {

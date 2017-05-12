@@ -189,6 +189,7 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
                 System.out.println("Hello world my friend is the darkness... (I aint your friend)");
                 break;
         }
+
     }
 
     @Override
