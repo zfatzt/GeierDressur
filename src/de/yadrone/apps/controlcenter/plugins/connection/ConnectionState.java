@@ -2,7 +2,6 @@ package de.yadrone.apps.controlcenter.plugins.connection;
 
 import java.awt.GridBagLayout;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import de.yadrone.apps.controlcenter.ICCPlugin;
@@ -18,12 +17,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ConnectionState extends JPanel implements ICCPlugin {
+	private static final long serialVersionUID = 1L;
+
 	private IARDrone drone;
 
 	private static Image greenIcon;
 	private static Image redIcon;
-
-
 
 	private IExceptionListener exceptionListener;
 
@@ -33,19 +32,17 @@ public class ConnectionState extends JPanel implements ICCPlugin {
 		greenIcon = new Image(this.getClass().getResourceAsStream("dot_green.png"));
 		redIcon = new Image(this.getClass().getResourceAsStream("dot_red.png"));
 
-	
 		Platform.runLater(() -> videoStateLabel.setGraphic(new ImageView(greenIcon)));
 		Platform.runLater(() -> videoStateLabel.setText("Video State"));
-		
+
 		Platform.runLater(() -> navadataStateLabel.setGraphic(new ImageView(greenIcon)));
 		Platform.runLater(() -> navadataStateLabel.setText("Navdata State"));
-		
+
 		Platform.runLater(() -> commandStateLabel.setGraphic(new ImageView(greenIcon)));
 		Platform.runLater(() -> commandStateLabel.setText("Command State"));
 
-		
 		exceptionListener = new IExceptionListener() {
-			
+
 			public void exeptionOccurred(ARDroneException exc) {
 				if (exc instanceof CommandException) {
 					Platform.runLater(() -> commandStateLabel.setGraphic(new ImageView(redIcon)));
@@ -54,7 +51,7 @@ public class ConnectionState extends JPanel implements ICCPlugin {
 				} else if (exc instanceof NavDataException) {
 					Platform.runLater(() -> navadataStateLabel.setGraphic(new ImageView(redIcon)));
 					Platform.runLater(() -> navadataStateLabel.setText("Navdata State"));
-					
+
 				} else if (exc instanceof VideoException) {
 					Platform.runLater(() -> videoStateLabel.setGraphic(new ImageView(greenIcon)));
 					Platform.runLater(() -> videoStateLabel.setText("Video State"));
@@ -63,13 +60,14 @@ public class ConnectionState extends JPanel implements ICCPlugin {
 		};
 
 	}
+
 	private Label commandStateLabel;
 	private Label navadataStateLabel;
 	private Label videoStateLabel;
-	
+
 	public void activate(IARDrone drone) {
 		this.drone = drone;
-		
+
 		drone.addExceptionListener(exceptionListener);
 	}
 

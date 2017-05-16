@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 
 public class Attitude implements ICCPlugin {
 	private IARDrone drone;
-	
 
 	private AltitudeListener altitudeListener = new AltitudeListener() {
 
@@ -19,10 +18,9 @@ public class Attitude implements ICCPlugin {
 
 		public void receivedExtendedAltitude(Altitude altitude) {
 		}
-		
 
 	};
-	
+
 	private Label attitudeLabel;
 
 	public void activate(IARDrone drone) {

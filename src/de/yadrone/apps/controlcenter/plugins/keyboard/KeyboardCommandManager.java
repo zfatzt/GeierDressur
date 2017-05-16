@@ -13,18 +13,12 @@ public class KeyboardCommandManager {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		// System.out.println("Key released: " + e.getKeyChar());
-
 		drone.hover();
 	}
 
 	public void keyPressed(KeyEvent e) {
-		 System.out.println("Key pressed: " + e.getCode()); // + " (Enter="
-		// + ENTER + " Space=" + SPACE + " S=" +
-		// S + " E=" + E + ")");
-
+		System.out.println("Key pressed: " + e.getCode());
 		KeyCode code = e.getCode();
-
 		handleCommand(code);
 	}
 
@@ -32,7 +26,6 @@ public class KeyboardCommandManager {
 		switch (code) {
 		case ENTER:
 			drone.takeOff();
-			System.out.println("aksldfhäaskfjslaödkjföasljfldaskhfjlsödkfnasldjgopasgspdaäljfdsöajfnlajksdfjaokjaoöihdajgajkfhnoashfoklasjlfjasljfjpä");
 			break;
 		case SPACE:
 			drone.landing();

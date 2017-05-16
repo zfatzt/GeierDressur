@@ -1,4 +1,3 @@
-// TODO FIXME XXX RENAME THE FUCKING CLASSES
 package de.yadrone.apps.controlcenter.plugins.battery;
 
 import de.yadrone.apps.controlcenter.ICCPlugin;
@@ -18,8 +17,7 @@ public class BatteryInDecimal implements ICCPlugin {
 			if (batteryLevel != BatteryInDecimal.this.getBatteryLevel()) {
 				BatteryInDecimal.this.setBatteryLevel(batteryLevel);
 			}
-			// TODO: rename vars
-			final double toSetInBar = (double)batteryLevel/100d;
+			final double toSetInBar = (double) batteryLevel / 100d;
 			Platform.runLater(() -> progressbarDrone.setProgress(toSetInBar));
 		}
 
@@ -32,7 +30,7 @@ public class BatteryInDecimal implements ICCPlugin {
 	public int getBatteryLevel() {
 		return batteryLevel;
 	}
-	
+
 	public void setBatteryLevel(int batteryLevel) {
 		this.batteryLevel = batteryLevel;
 	}
@@ -45,14 +43,21 @@ public class BatteryInDecimal implements ICCPlugin {
 		this.voltageLevel = voltageLevel;
 	}
 
-	@Override
 	public void activate(IARDrone drone) {
-		this.drone = drone;
+		this.setDrone(drone);
 		drone.getNavDataManager().addBatteryListener(batteryListener);
 	}
 
 	public void setProgressbarDrone(ProgressBar progressbarDrone) {
 		this.progressbarDrone = progressbarDrone;
+	}
+
+	public IARDrone getDrone() {
+		return drone;
+	}
+
+	public void setDrone(IARDrone drone) {
+		this.drone = drone;
 	}
 
 }
