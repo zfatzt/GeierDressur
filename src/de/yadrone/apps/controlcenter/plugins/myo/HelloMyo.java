@@ -3,7 +3,6 @@ package de.yadrone.apps.controlcenter.plugins.myo;
 import com.thalmic.myo.DeviceListener;
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
-import de.yadrone.apps.controlcenter.plugins.myo.DataCollector;
 
 /*
  * JVM Arguments to help debug.
