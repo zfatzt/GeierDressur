@@ -2,31 +2,22 @@ package de.yadrone.apps.controlcenter.plugins.myo;
 
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
+
 import javafx.application.Application;
 import javafx.scene.Group;
-import javafx.scene.PerspectiveCamera;
-import javafx.scene.PointLight;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
-import javafx.scene.shape.Cylinder;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
-/**
- * Created by admin on 12.05.2017.
- */
 public class cube extends Application {
     @Override
     public void start(Stage stage) {
         //Drawing a Box
         Box box = new Box();
 
-        DataCollector dc = new DataCollector();
+//        DataCollector dc = new DataCollector();
 
 
         //Setting the properties of the Box
@@ -43,9 +34,9 @@ public class cube extends Application {
         Rotate rxBox = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
         Rotate ryBox = new Rotate(0, 0, 0, 0, Rotate.Y_AXIS);
         Rotate rzBox = new Rotate(0, 0, 0, 0, Rotate.Z_AXIS);
-        rxBox.setAngle(dc.getYawW());
-        ryBox.setAngle(dc.getRollW());
-        rzBox.setAngle(dc.getPitchW());
+//        rxBox.setAngle(dc.getYawW());
+//        ryBox.setAngle(dc.getRollW());
+//        rzBox.setAngle(dc.getPitchW());
         box.getTransforms().addAll(translate, rxBox, ryBox, rzBox);
 
         //Creating a Group object
