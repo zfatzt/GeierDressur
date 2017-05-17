@@ -75,6 +75,9 @@ public class KeyboardCommandManager {
 		case B:
 			drone.toggleCamera();
 			break;
+		case M:
+			drone.stop();
+			break;
 		case PLUS:
 			drone.setSpeed(drone.getSpeed() + 1);
 			break;

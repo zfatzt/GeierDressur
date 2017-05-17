@@ -1,9 +1,9 @@
 package de.yadrone.apps.controlcenter;
 
 import com.thalmic.myo.Hub;
-
 import com.thalmic.myo.Myo;
 import com.thalmic.myo.enums.LockingPolicy;
+
 import de.yadrone.apps.controlcenter.plugins.altitude.Attitude;
 import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
 import de.yadrone.apps.controlcenter.plugins.connection.ConnectionState;
@@ -16,6 +16,8 @@ import de.yadrone.base.IARDrone;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -34,11 +36,17 @@ public class Main extends Application {
 
 		Hub hub = new Hub("com.example.hello-myo");
 		System.out.println("Attempting to find a Myo.....");
-		 Myo myo = hub.waitForMyo(100000);
 
-		 if (myo == null || ardrone == null) {
-		 throw new RuntimeException("Unable to find Myo or no Connection to Drone");
-		 }
+		Myo myo = hub.waitForMyo(100);
+
+		if (myo == null) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("No Connection");
+			alert.setHeaderText("No connection to Myo.");
+			alert.setContentText("Connect Myo and than restart Programm!");
+			alert.showAndWait();
+		}
+
 		ardrone.start();
 		hub.setLockingPolicy(LockingPolicy.LOCKING_POLICY_NONE);
 		KeyboardCommandManager cmdManager = new KeyboardCommandManager(ardrone);
@@ -62,13 +70,13 @@ public class Main extends Application {
 		hub.addListener(new BatteryListenerMyo(c.getProgressbarMyo(), c.getGesturePerformed(), c.getArmActive(),
 				c.getStatusConnectionLabelMyo(), c.getStatusPairLabelMyo(), c.getStatusWarmupLabelMyo(), ardrone));
 
-		 Runnable runnable = () -> {
-		 while (true) {
-		 hub.run(10);
-		 myo.requestBatteryLevel();
-		 }
-		 };
-		 new Thread(runnable).start();
+		Runnable runnable = () -> {
+			while (true) {
+				hub.run(10);
+				myo.requestBatteryLevel();
+			}
+		};
+		new Thread(runnable).start();
 
 		// Battery
 		BatteryInDecimal bid = new BatteryInDecimal();
