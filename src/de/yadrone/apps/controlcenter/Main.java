@@ -2,6 +2,8 @@ package de.yadrone.apps.controlcenter;
 
 import com.thalmic.myo.Hub;
 
+import com.thalmic.myo.Myo;
+import com.thalmic.myo.enums.LockingPolicy;
 import de.yadrone.apps.controlcenter.plugins.altitude.Attitude;
 import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
 import de.yadrone.apps.controlcenter.plugins.connection.ConnectionState;
@@ -32,13 +34,13 @@ public class Main extends Application {
 
 		Hub hub = new Hub("com.example.hello-myo");
 		System.out.println("Attempting to find a Myo.....");
-		// Myo myo = hub.waitForMyo(100000);
-		//
-		// if (myo == null || ardrone == null) {
-		// throw new RuntimeException("Unable to find Myo or no Connection to Drone");
-		// }
-		ardrone.start();
+		 Myo myo = hub.waitForMyo(100000);
 
+		 if (myo == null || ardrone == null) {
+		 throw new RuntimeException("Unable to find Myo or no Connection to Drone");
+		 }
+		ardrone.start();
+		hub.setLockingPolicy(LockingPolicy.LOCKING_POLICY_NONE);
 		KeyboardCommandManager cmdManager = new KeyboardCommandManager(ardrone);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("View.fxml"));
 
@@ -60,13 +62,13 @@ public class Main extends Application {
 		hub.addListener(new BatteryListenerMyo(c.getProgressbarMyo(), c.getGesturePerformed(), c.getArmActive(),
 				c.getStatusConnectionLabelMyo(), c.getStatusPairLabelMyo(), c.getStatusWarmupLabelMyo(), ardrone));
 
-		// Runnable runnable = () -> {
-		// while (true) {
-		// hub.run(10);
-		// myo.requestBatteryLevel();
-		// }
-		// };
-		// new Thread(runnable).start();
+		 Runnable runnable = () -> {
+		 while (true) {
+		 hub.run(10);
+		 myo.requestBatteryLevel();
+		 }
+		 };
+		 new Thread(runnable).start();
 
 		// Battery
 		BatteryInDecimal bid = new BatteryInDecimal();

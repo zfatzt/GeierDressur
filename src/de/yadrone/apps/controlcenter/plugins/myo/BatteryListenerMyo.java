@@ -21,6 +21,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import static com.sun.webkit.graphics.GraphicsDecoder.SCALE;
+
 public class BatteryListenerMyo extends Thread implements DeviceListener {
 
     private ProgressBar progressbarMyo;
@@ -33,6 +35,13 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
     private Image greenIcon = new Image(this.getClass().getResourceAsStream("dot_green.png"));
     private Image redIcon = new Image(this.getClass().getResourceAsStream("dot_red.png"));
     private IARDrone drone;
+    private double rollW;
+    private double pitchW;
+    private double yawW;
+    private double oldRollW;
+    private double oldPitchW;
+    private double oldYawW;
+
 
     public Label getArmLabel() {
         return armLabel;
@@ -56,6 +65,7 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
 
     public BatteryListenerMyo(ProgressBar progressbarMyo2, Label poseLabel, Label armLabel, Label connectionLabel,
                               Label pairLabel, Label warmupLabel, IARDrone drone) {
+        this.drone = drone;
         pairLabel.setGraphic(new ImageView(greenIcon));
         pairLabel.setText("Pair State");
         connectionLabel.setGraphic(new ImageView(redIcon));
@@ -63,13 +73,24 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
         warmupLabel.setGraphic(new ImageView(greenIcon));
         warmupLabel.setText("Warmup State");
 
+        Runnable runnable = () -> {
+            while (true) {
+                this.checkIfXDirectionChanged();
+                this.checkIfYDirectionChanged();
+                this.checkIfZDirectionChanged();
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.setDaemon(true);
+        thread.start();
+
         setProgressbarMyo(progressbarMyo2);
         setPoseLabel(poseLabel);
         setArmLabel(armLabel);
         setConnectionLabel(connectionLabel);
         setPairLabel(pairLabel);
         setWarmupLabel(warmupLabel);
-        this.drone = drone;
+
 
     }
 
@@ -125,7 +146,7 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
     public void onArmSync(Myo myo, long timestamp, Arm arm, XDirection xDirection, float rotation,
                           WarmupState warmupState) {
         if (arm != null) {
-            String armString = String.valueOf(arm == Arm.ARM_LEFT ? "L" : "R");
+            String armString = String.valueOf(arm == Arm.ARM_LEFT ? "Left" : "Right");
             Platform.runLater(() -> this.armLabel.setText(armString));
             System.out.println(armString);
         } else {
@@ -161,39 +182,45 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
         System.out.println(poseTypeString);
         if (currentPose.getType() == PoseType.FIST) {
             myo.vibrate(VibrationType.VIBRATION_MEDIUM);
+        } else if (pose.getType() == PoseType.WAVE_IN) {
+            System.out.println("Pose wave in");
+            drone.spinLeft();
+
+        } else if (pose.getType() == PoseType.WAVE_OUT) {
+            System.out.println("Pose wave out");
+            drone.spinRight();
+
+        } else if (pose.getType() == PoseType.FIST) {
+            System.out.println("Pose fist");
+            drone.landing();
+
+        } else if (pose.getType() == PoseType.DOUBLE_TAP) {
+            System.out.println("Pose double tap");
+            drone.takeOff();
+
+        } else if (pose.getType() == PoseType.FINGERS_SPREAD) {
+            drone.getCommandManager().animate(FlightAnimation.WAVE);
+
+        } else {
+            System.out.println("Hello world my friend is the darkness... (I aint your friend)");
+
         }
-        switch (pose.getType()) {
-            case WAVE_IN:
-                System.out.println("Pose wavein");
-                drone.spinLeft();
-                break;
-            case WAVE_OUT:
-                System.out.println("Pose wave out");
-                drone.spinRight();
-                break;
-            case FIST:
-                System.out.println("Pose fist");
-                drone.landing();
-                break;
-            case DOUBLE_TAP:
-                System.out.println("Pose double tap");
-                drone.takeOff();
-                break;
-            case REST:
-                drone.hover();
-                break;
-            case FINGERS_SPREAD:
-                drone.getCommandManager().animate(FlightAnimation.WAVE);
-                break;
-            default:
-                System.out.println("Hello world my friend is the darkness... (I aint your friend)");
-                break;
-        }
+
 
     }
 
     @Override
     public void onOrientationData(Myo myo, long timestamp, Quaternion rotation) {
+        Quaternion normalized = rotation.normalized();
+
+        double roll = Math.atan2(2.0f * (normalized.getW() * normalized.getX() + normalized.getY() * normalized.getZ()), 1.0f - 2.0f * (normalized.getX() * normalized.getX() + normalized.getY() * normalized.getY()));
+        double pitch = Math.asin(2.0f * (normalized.getW() * normalized.getY() - normalized.getZ() * normalized.getX()));
+        double yaw = Math.atan2(2.0f * (normalized.getW() * normalized.getZ() + normalized.getX() * normalized.getY()), 1.0f - 2.0f * (normalized.getY() * normalized.getY() + normalized.getZ() * normalized.getZ()));
+
+        this.rollW = Math.round(((roll + Math.PI) / (Math.PI * 2.0) * SCALE));
+        this.pitchW = Math.round(((pitch + Math.PI / 2.0) / Math.PI * SCALE));
+        this.yawW = Math.round(((yaw + Math.PI) / (Math.PI * 2.0) * SCALE));
+
 
     }
 
@@ -236,4 +263,51 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
         this.progressbarMyo = progressBarMyo;
     }
 
+    public void checkIfZDirectionChanged() {
+
+        if (this.rollW > oldRollW) {
+            drone.spinLeft();
+            System.out.println("spinnin left");
+        } else if (this.rollW < oldRollW) {
+            drone.spinRight();
+            System.out.println("spinnin right");
+        } else {
+//            System.out.println("didn't get Z-Direction");
+        }
+
+        this.oldRollW = this.rollW;
+        drone.hover();
+
+    }
+
+    public void checkIfYDirectionChanged() {
+        if (this.yawW > oldYawW) {
+            drone.goLeft();
+            System.out.println("goin Left");
+        } else if (this.yawW < oldYawW) {
+            drone.goRight();
+            System.out.println("goin Right");
+        } else {
+//            System.out.println("didn't get Y-Direction");
+        }
+        this.oldYawW = this.yawW;
+        drone.hover();
+
+    }
+
+    public void checkIfXDirectionChanged() {
+        if (this.pitchW > oldPitchW) {
+            drone.forward();
+            System.out.println("goin froward");
+        } else if (this.pitchW < oldPitchW) {
+            drone.backward();
+            System.out.println("goin back");
+        } else {
+//            System.out.println("didn't get X-Direction");
+        }
+        this.oldPitchW = this.pitchW;
+        drone.hover();
+
+
+    }
 }

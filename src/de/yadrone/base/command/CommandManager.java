@@ -465,7 +465,7 @@ public class CommandManager extends AbstractManager
 	 */
 	public CommandManager setMaxEulerAngle(Location l, float angle) {
 		angle = limit(angle, 0f, 0.52f);
-		System.out.println("CommandManager: setMaxEulerAngle (bendingAngle): " + angle + " rad");
+//		System.out.println("CommandManager: setMaxEulerAngle (bendingAngle): " + angle + " rad");
 		String command = "control:" + l.getCommandPrefix() + "euler_angle_max";
 		q.add(new ConfigureCommand(command, String.valueOf(angle)));
 		return this;
@@ -487,7 +487,7 @@ public class CommandManager extends AbstractManager
 	 */
 	public CommandManager setMaxAltitude(Location l, int altitude) {
 		altitude = limit(altitude, 0, 100000);
-		System.out.println("CommandManager: setMaxAltitude: " + altitude + " mm");
+//		System.out.println("CommandManager: setMaxAltitude: " + altitude + " mm");
 		String command = "control:" + l.getCommandPrefix() + "altitude_max";
 		q.add(new ConfigureCommand(command, altitude));
 		return this;
@@ -532,7 +532,7 @@ public class CommandManager extends AbstractManager
 	 */
 	public CommandManager setMaxVz(Location l, int speed) {
 		speed = limit(speed, 0, 2000);
-		System.out.println("CommandManager: setMaxVz (verticalSpeed): " + speed + " mm");
+//		System.out.println("CommandManager: setMaxVz (verticalSpeed): " + speed + " mm");
 		String command = "control:" + l.getCommandPrefix() + "control_vz_max";
 		q.add(new ConfigureCommand(command, speed));
 		return this;
@@ -893,7 +893,7 @@ public class CommandManager extends AbstractManager
 
 	private synchronized void sendCommand(ATCommand c) throws InterruptedException, IOException {
 		if (!(c instanceof KeepAliveCommand)) {
-			 System.out.println("CommandManager: send " + c.getCommandString(seq));
+//			 System.out.println("CommandManager: send " + c.getCommandString(seq));
 		}
 		
 		String config = "AT*CONFIG_IDS=" + (seq++) + ",\"" + CommandManager.SESSION_ID + "\",\"" + CommandManager.PROFILE_ID +"\",\"" + CommandManager.APPLICATION_ID + "\"" + "\r"; // AT*CONFIG_IDS=5,"aabbccdd","bbccddee","ccddeeff"

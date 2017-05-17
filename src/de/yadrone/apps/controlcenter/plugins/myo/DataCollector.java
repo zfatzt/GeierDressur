@@ -65,6 +65,8 @@ public class DataCollector extends AbstractDeviceListener {
 		String yDisplay = String.format("[%s%s]", repeatCharacter('*', (int) pitchW), repeatCharacter(' ', (int) (SCALE - pitchW)));
 		String zDisplay = String.format("[%s%s]", repeatCharacter('*', (int) yawW), repeatCharacter(' ', (int) (SCALE - yawW)));
 
+
+
 		String armString = null;
 		if (whichArm != null) {
 			armString = String.format("[%s]", whichArm == Arm.ARM_LEFT ? "L" : "R");
@@ -78,11 +80,19 @@ public class DataCollector extends AbstractDeviceListener {
 		} else {
 			poseString = String.format("[%14s]", " ");
 		}
-		builder.append(xDisplay);
-		builder.append(yDisplay);
-		builder.append(zDisplay);
-		builder.append(armString);
-		builder.append(poseString);
+		String pitchString = "PitchString: " + pitchW + " \t";
+		String yawString = "YallString: " + yawW + " \t";
+		String rollString = "RollString: " + rollW + " \t";
+
+
+//		builder.append(xDisplay);
+//		builder.append(yDisplay);
+//		builder.append(zDisplay);
+//		builder.append(armString);
+//		builder.append(poseString);
+		builder.append(pitchString);
+		builder.append(yawString);
+		builder.append(rollString);
 		return builder.toString();
 	}
 
