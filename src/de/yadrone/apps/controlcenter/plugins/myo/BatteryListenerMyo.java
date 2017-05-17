@@ -30,8 +30,8 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
     private Label connectionLabel;
     private Label pairLabel;
     private Label warmupLabel;
-    private Image greenIcon = new Image(this.getClass().getResourceAsStream("img/dot_green.png"));
-    private Image redIcon = new Image(this.getClass().getResourceAsStream("img/dot_red.png"));
+    private Image greenIcon = new Image(this.getClass().getResourceAsStream("/de/yadrone/apps/controlcenter/img/dot_green.png"));
+    private Image redIcon = new Image(this.getClass().getResourceAsStream("/de/yadrone/apps/controlcenter/img/dot_red.png"));
     private IARDrone drone;
 
     public Label getArmLabel() {
