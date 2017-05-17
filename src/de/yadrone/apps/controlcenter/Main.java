@@ -32,12 +32,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		ardrone = new ARDrone();
-		System.out.println("Connect drone controller");
-
+		System.out.println("Start");
 		Hub hub = new Hub("com.example.hello-myo");
-		System.out.println("Attempting to find a Myo.....");
-
-		Myo myo = hub.waitForMyo(100);
+		Myo myo = hub.waitForMyo(10);
 
 		if (myo == null) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -46,13 +43,18 @@ public class Main extends Application {
 			alert.setContentText("Connect Myo and then restart Programm!");
 			alert.showAndWait();
 		}
-		if (ardrone == null) {
+		try{
+			ardrone.start();
+		}
+		catch (Exception e) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("No Connection");
 			alert.setHeaderText("No connection to Drone.");
 			alert.setContentText("Connect Drone and then restart Programm!");
 			alert.showAndWait();
 		}
+			
+		
 
 		ardrone.start();
 		hub.setLockingPolicy(LockingPolicy.LOCKING_POLICY_NONE);
