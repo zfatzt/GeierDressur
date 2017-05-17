@@ -1,13 +1,12 @@
 package de.yadrone.apps.controlcenter.plugins.speed;
 
 
-import de.yadrone.apps.controlcenter.ICCPlugin;
 import de.yadrone.base.ARDrone;
 import de.yadrone.base.IARDrone;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
-public class SpeedLabel implements ICCPlugin
+public class SpeedLabel
 {
 	private IARDrone drone;
 	

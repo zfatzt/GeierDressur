@@ -4,7 +4,6 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
-import de.yadrone.apps.controlcenter.ICCPlugin;
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.exception.ARDroneException;
 import de.yadrone.base.exception.CommandException;
@@ -16,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class ConnectionState extends JPanel implements ICCPlugin {
+public class ConnectionState{
 	private static final long serialVersionUID = 1L;
 
 	private IARDrone drone;
@@ -27,9 +26,8 @@ public class ConnectionState extends JPanel implements ICCPlugin {
 	private IExceptionListener exceptionListener;
 
 	public ConnectionState() {
-		super(new GridBagLayout());
 
-		greenIcon = new Image(this.getClass().getResourceAsStream("img/dot_green.png"));
+		greenIcon = new Image(this.getClass().getResourceAsStream("/ img/dot_green.png"));
 		redIcon = new Image(this.getClass().getResourceAsStream("img/dot_red.png"));
 
 		Platform.runLater(() -> videoStateLabel.setGraphic(new ImageView(greenIcon)));

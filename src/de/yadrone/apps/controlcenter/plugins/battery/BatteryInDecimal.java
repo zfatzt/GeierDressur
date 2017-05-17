@@ -1,12 +1,12 @@
 package de.yadrone.apps.controlcenter.plugins.battery;
 
-import de.yadrone.apps.controlcenter.ICCPlugin;
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.navdata.BatteryListener;
 import javafx.application.Platform;
 import javafx.scene.control.ProgressBar;
 
-public class BatteryInDecimal implements ICCPlugin {
+
+public class BatteryInDecimal {
 	private IARDrone drone;
 	private int batteryLevel = 20;
 	private int voltageLevel;
