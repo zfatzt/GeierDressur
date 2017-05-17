@@ -43,7 +43,14 @@ public class Main extends Application {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("No Connection");
 			alert.setHeaderText("No connection to Myo.");
-			alert.setContentText("Connect Myo and than restart Programm!");
+			alert.setContentText("Connect Myo and then restart Programm!");
+			alert.showAndWait();
+		}
+		if (ardrone == null) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("No Connection");
+			alert.setHeaderText("No connection to Drone.");
+			alert.setContentText("Connect Drone and then restart Programm!");
 			alert.showAndWait();
 		}
 
