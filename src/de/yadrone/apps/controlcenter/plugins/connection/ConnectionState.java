@@ -29,8 +29,8 @@ public class ConnectionState extends JPanel implements ICCPlugin {
 	public ConnectionState() {
 		super(new GridBagLayout());
 
-		greenIcon = new Image(this.getClass().getResourceAsStream("dot_green.png"));
-		redIcon = new Image(this.getClass().getResourceAsStream("dot_red.png"));
+		greenIcon = new Image(this.getClass().getResourceAsStream("img/dot_green.png"));
+		redIcon = new Image(this.getClass().getResourceAsStream("img/dot_red.png"));
 
 		Platform.runLater(() -> videoStateLabel.setGraphic(new ImageView(greenIcon)));
 		Platform.runLater(() -> videoStateLabel.setText("Video State"));
