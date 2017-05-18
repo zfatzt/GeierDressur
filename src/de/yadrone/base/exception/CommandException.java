@@ -5,6 +5,6 @@ public class CommandException extends ARDroneException
 
 	public CommandException(Throwable t)
 	{
-		super(t);
+//		super(t);
 	}
 }

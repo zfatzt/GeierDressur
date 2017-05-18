@@ -5,7 +5,7 @@ public class ARDroneException extends Exception
 
 	public ARDroneException()
 	{
-		super();
+//		super();
 	}
 	
 	public ARDroneException(Throwable t)

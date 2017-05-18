@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 import de.yadrone.base.command.CommandManager;
 import de.yadrone.base.exception.IExceptionListener;
+import de.yadrone.base.exception.VideoException;
 import de.yadrone.base.manager.AbstractTCPManager;
 import de.yadrone.base.utils.ARDroneUtils;
 
@@ -104,8 +105,8 @@ public class VideoManager extends AbstractTCPManager implements ImageListener {
 			System.out.println("VideoManager: decode ");
 			decoder.decode(getInputStream());
 		} catch (Exception exc) {
-//			exc.printStackTrace();
-//			excListener.exeptionOccurred(new VideoException(exc));
+			exc.printStackTrace();
+			excListener.exeptionOccurred(new VideoException(exc));
 
 		}
 

@@ -341,7 +341,6 @@ public class ARDrone implements IARDrone, IExceptionListener {
 	 * @param obj
 	 */
 	public static void error(String message, Object obj) {
-		System.err.println("[" + obj.getClass() + "] " + message);
 	}
 
 	private InetAddress getInetAddress() {

@@ -32,7 +32,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		ardrone = new ARDrone();
+		ardrone.start();
+		
 		System.out.println("Start");
+		
 		Hub hub = new Hub("com.example.hello-myo");
 		Myo myo = hub.waitForMyo(10);
 
@@ -43,17 +46,7 @@ public class Main extends Application {
 			alert.setContentText("Connect Myo and then restart Programm!");
 			alert.showAndWait();
 		}
-		try {
-			ardrone.start();
-		} catch (Exception e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("No Connection");
-			alert.setHeaderText("No connection to Drone.");
-			alert.setContentText("Connect Drone and then restart Programm!");
-			alert.showAndWait();
-		}
-
-		ardrone.start();
+		
 		hub.setLockingPolicy(LockingPolicy.LOCKING_POLICY_NONE);
 		KeyboardCommandManager cmdManager = new KeyboardCommandManager(ardrone);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("View.fxml"));
