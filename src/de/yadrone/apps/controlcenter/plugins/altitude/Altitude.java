@@ -1,26 +1,27 @@
 package de.yadrone.apps.controlcenter.plugins.altitude;
 
 import de.yadrone.base.IARDrone;
-import de.yadrone.base.navdata.Altitude;
 import de.yadrone.base.navdata.AltitudeListener;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
-public class Attitude {
-		private IARDrone drone;
+public class Altitude {
+	private IARDrone drone;
 
-		private AltitudeListener altitudeListener = new AltitudeListener() {
+	private AltitudeListener altitudeListener = new AltitudeListener() {
 
-			public void receivedAltitude(int altitude) {
-				Platform.runLater(() -> attitudeLabel.setText(String.valueOf(altitude)));
-			}
+		public void receivedAltitude(int altitude) {
+			Platform.runLater(() -> attitudeLabel.setText(String.valueOf(altitude)));
+		}
 
-			public void receivedExtendedAltitude(Altitude altitude) {
-			}
+		@Override
+		public void receivedExtendedAltitude(de.yadrone.base.navdata.Altitude d) {
 
-		};
+		}
 
-		private Label attitudeLabel;
+	};
+
+	private Label attitudeLabel;
 
 	public void activate(IARDrone drone) {
 		this.drone = drone;
