@@ -34,18 +34,8 @@ public class Main extends Application {
 		ardrone = new ARDrone();
 		ardrone.start();
 
-		System.out.println("Start");
-
 		Hub hub = new Hub("com.example.hello-myo");
 		Myo myo = hub.waitForMyo(10);
-
-		if (myo == null) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("No Connection");
-			alert.setHeaderText("No connection to Myo.");
-			alert.setContentText("Connect Myo and then restart Programm!");
-			alert.showAndWait();
-		}
 
 		hub.setLockingPolicy(LockingPolicy.LOCKING_POLICY_NONE);
 		KeyboardCommandManager cmdManager = new KeyboardCommandManager(ardrone);
@@ -81,7 +71,7 @@ public class Main extends Application {
 		BatteryInDecimal bid = new BatteryInDecimal(ardrone);
 		bid.setProgressbarDrone(c.getProgressbarDrone());
 
-		// altitude
+		// Altitude
 		Altitude altitude = new Altitude(ardrone);
 		altitude.setAttitudeLabel((c.getHeightDrone()));
 
