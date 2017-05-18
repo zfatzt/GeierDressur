@@ -1,10 +1,9 @@
-package de.yadrone.apps.controlcenter.plugins.battery;
+package ch.bbcag.controlcenter.plugins.battery;
 
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.navdata.BatteryListener;
 import javafx.application.Platform;
 import javafx.scene.control.ProgressBar;
-
 
 public class BatteryInDecimal {
 	private IARDrone drone;

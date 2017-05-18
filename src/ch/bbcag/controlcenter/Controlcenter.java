@@ -1,4 +1,4 @@
-package de.yadrone.apps.controlcenter;
+package ch.bbcag.controlcenter;
 
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -26,7 +26,6 @@ import java.net.SocketTimeoutException;
 import de.yadrone.base.command.CommandManager;
 import de.yadrone.base.command.ControlCommand;
 import de.yadrone.base.command.ControlMode;
-import de.yadrone.base.exception.ConfigurationException;
 import de.yadrone.base.exception.IExceptionListener;
 import de.yadrone.base.manager.AbstractTCPManager;
 import de.yadrone.base.utils.ARDroneUtils;
@@ -53,8 +52,8 @@ public class ConfigurationManager extends AbstractTCPManager
 		}
 		catch(Exception exc)
 		{
-			exc.printStackTrace();
-			excListener.exeptionOccurred(new ConfigurationException(exc));
+//			exc.printStackTrace();
+//			excListener.exeptionOccurred(new ConfigurationException(exc));
 		}
 	}
 

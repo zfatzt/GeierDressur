@@ -1,8 +1,4 @@
-package de.yadrone.apps.controlcenter.plugins.connection;
-
-import java.awt.GridBagLayout;
-
-import javax.swing.JPanel;
+package ch.bbcag.controlcenter.plugins.connection;
 
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.exception.ARDroneException;
@@ -15,9 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class ConnectionState{
-	private static final long serialVersionUID = 1L;
-
+public class ConnectionState {
 	private IARDrone drone;
 
 	private static Image greenIcon;
@@ -27,8 +21,8 @@ public class ConnectionState{
 
 	public ConnectionState() {
 
-		greenIcon = new Image(this.getClass().getResourceAsStream("/ img/dot_green.png"));
-		redIcon = new Image(this.getClass().getResourceAsStream("img/dot_red.png"));
+		greenIcon = new Image(this.getClass().getResourceAsStream("/ch/bbcag/controlcenter/img/dot_green.png"));
+		redIcon = new Image(this.getClass().getResourceAsStream("/ch/bbcag/controlcenter/img/dot_red.png"));
 
 		Platform.runLater(() -> videoStateLabel.setGraphic(new ImageView(greenIcon)));
 		Platform.runLater(() -> videoStateLabel.setText("Video State"));

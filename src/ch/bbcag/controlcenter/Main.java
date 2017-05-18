@@ -1,16 +1,16 @@
-package de.yadrone.apps.controlcenter;
+package ch.bbcag.controlcenter;
 
 import com.thalmic.myo.Hub;
 import com.thalmic.myo.Myo;
 import com.thalmic.myo.enums.LockingPolicy;
 
-import de.yadrone.apps.controlcenter.plugins.altitude.Attitude;
-import de.yadrone.apps.controlcenter.plugins.battery.BatteryInDecimal;
-import de.yadrone.apps.controlcenter.plugins.connection.ConnectionState;
-import de.yadrone.apps.controlcenter.plugins.keyboard.KeyboardCommandManager;
-import de.yadrone.apps.controlcenter.plugins.myo.BatteryListenerMyo;
-import de.yadrone.apps.controlcenter.plugins.speed.SpeedLabel;
-import de.yadrone.apps.controlcenter.plugins.video.Video;
+import ch.bbcag.controlcenter.plugins.altitude.Altitude;
+import ch.bbcag.controlcenter.plugins.battery.BatteryInDecimal;
+import ch.bbcag.controlcenter.plugins.connection.ConnectionState;
+import ch.bbcag.controlcenter.plugins.keyboard.KeyboardCommandManager;
+import ch.bbcag.controlcenter.plugins.myo.BatteryListenerMyo;
+import ch.bbcag.controlcenter.plugins.speed.SpeedLabel;
+import ch.bbcag.controlcenter.plugins.video.Video;
 import de.yadrone.base.ARDrone;
 import de.yadrone.base.IARDrone;
 import javafx.application.Application;
@@ -43,18 +43,15 @@ public class Main extends Application {
 			alert.setContentText("Connect Myo and then restart Programm!");
 			alert.showAndWait();
 		}
-		try{
+		try {
 			ardrone.start();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("No Connection");
 			alert.setHeaderText("No connection to Drone.");
 			alert.setContentText("Connect Drone and then restart Programm!");
 			alert.showAndWait();
 		}
-			
-		
 
 		ardrone.start();
 		hub.setLockingPolicy(LockingPolicy.LOCKING_POLICY_NONE);
@@ -93,7 +90,7 @@ public class Main extends Application {
 		bid.setProgressbarDrone(c.getProgressbarDrone());
 
 		// Attitude
-		Attitude attitude = new Attitude();
+		Altitude attitude = new Altitude();
 		attitude.activate(ardrone);
 		attitude.setAttitudeLabel(c.getHeightDrone());
 

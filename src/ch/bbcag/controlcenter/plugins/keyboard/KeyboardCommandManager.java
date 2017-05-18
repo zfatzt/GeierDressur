@@ -1,4 +1,4 @@
-package de.yadrone.apps.controlcenter.plugins.keyboard;
+package ch.bbcag.controlcenter.plugins.keyboard;
 
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.command.FlightAnimation;

@@ -1,8 +1,8 @@
-package de.yadrone.apps.controlcenter.plugins.video;
+package ch.bbcag.controlcenter.plugins.video;
 
 import java.awt.image.BufferedImage;
 
-import de.yadrone.apps.controlcenter.Controlcenter;
+import ch.bbcag.controlcenter.Controlcenter;
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.video.ImageListener;
 import javafx.embed.swing.SwingFXUtils;

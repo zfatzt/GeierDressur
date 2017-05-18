@@ -1,4 +1,4 @@
-package de.yadrone.apps.controlcenter.plugins.altitude;
+package ch.bbcag.controlcenter.plugins.altitude;
 
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.navdata.AltitudeListener;
