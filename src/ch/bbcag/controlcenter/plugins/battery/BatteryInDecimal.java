@@ -8,7 +8,11 @@ import javafx.scene.control.ProgressBar;
 public class BatteryInDecimal {
 	private IARDrone drone;
 	private int batteryLevel = 20;
-	private int voltageLevel;
+
+	public BatteryInDecimal(IARDrone drone) {
+		this.setDrone(drone);
+		drone.getNavDataManager().addBatteryListener(batteryListener);
+	}
 
 	private BatteryListener batteryListener = new BatteryListener() {
 
@@ -20,9 +24,10 @@ public class BatteryInDecimal {
 			Platform.runLater(() -> progressbarDrone.setProgress(toSetInBar));
 		}
 
+		@Override
 		public void voltageChanged(int vbat_raw) {
-
 		}
+
 	};
 	private ProgressBar progressbarDrone;
 
@@ -32,19 +37,6 @@ public class BatteryInDecimal {
 
 	public void setBatteryLevel(int batteryLevel) {
 		this.batteryLevel = batteryLevel;
-	}
-
-	public int getVoltageLevel() {
-		return voltageLevel;
-	}
-
-	public void setVoltageLevel(int voltageLevel) {
-		this.voltageLevel = voltageLevel;
-	}
-
-	public void activate(IARDrone drone) {
-		this.setDrone(drone);
-		drone.getNavDataManager().addBatteryListener(batteryListener);
 	}
 
 	public void setProgressbarDrone(ProgressBar progressbarDrone) {

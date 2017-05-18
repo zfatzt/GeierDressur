@@ -7,6 +7,13 @@ import javafx.scene.control.Label;
 
 public class SpeedLabel {
 	private IARDrone drone;
+	private Label speedLabel;
+
+	public SpeedLabel(IARDrone drone) {
+		this.drone = drone;
+		Platform.runLater(() -> speedLabel.setText(String.valueOf(drone.getSpeed())));
+		drone.addSpeedListener(speedListener);
+	}
 
 	private ARDrone.ISpeedListener speedListener = new ARDrone.ISpeedListener() {
 
@@ -18,17 +25,6 @@ public class SpeedLabel {
 			System.out.println(drone.getSpeed());
 		}
 	};
-	private Label speedLabel;
-
-	public void activate(IARDrone drone) {
-		this.drone = drone;
-		Platform.runLater(() -> speedLabel.setText(String.valueOf(drone.getSpeed())));
-		drone.addSpeedListener(speedListener);
-	}
-
-	public void deactivate() {
-		drone.removeSpeedListener(speedListener);
-	}
 
 	public void setSpeedLabel(Label speedLabel) {
 		this.speedLabel = speedLabel;

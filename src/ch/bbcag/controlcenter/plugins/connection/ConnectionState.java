@@ -13,13 +13,14 @@ import javafx.scene.image.ImageView;
 
 public class ConnectionState {
 	private IARDrone drone;
-
 	private static Image greenIcon;
 	private static Image redIcon;
 
 	private IExceptionListener exceptionListener;
 
-	public ConnectionState() {
+	public ConnectionState(IARDrone drone) {
+		this.setDrone(drone);
+		drone.addExceptionListener(exceptionListener);
 
 		greenIcon = new Image(this.getClass().getResourceAsStream("/ch/bbcag/controlcenter/img/dot_green.png"));
 		redIcon = new Image(this.getClass().getResourceAsStream("/ch/bbcag/controlcenter/img/dot_red.png"));
@@ -57,16 +58,6 @@ public class ConnectionState {
 	private Label navadataStateLabel;
 	private Label videoStateLabel;
 
-	public void activate(IARDrone drone) {
-		this.drone = drone;
-
-		drone.addExceptionListener(exceptionListener);
-	}
-
-	public void deactivate() {
-		drone.removeExceptionListener(exceptionListener);
-	}
-
 	public void setCommandStateLabel(Label commandStateLabel) {
 		this.commandStateLabel = commandStateLabel;
 	}
@@ -77,6 +68,14 @@ public class ConnectionState {
 
 	public void setVideoStateLabel(Label videoStateLabel) {
 		this.videoStateLabel = videoStateLabel;
+	}
+
+	public IARDrone getDrone() {
+		return drone;
+	}
+
+	public void setDrone(IARDrone drone) {
+		this.drone = drone;
 	}
 
 }

@@ -33,9 +33,9 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		ardrone = new ARDrone();
 		ardrone.start();
-		
+
 		System.out.println("Start");
-		
+
 		Hub hub = new Hub("com.example.hello-myo");
 		Myo myo = hub.waitForMyo(10);
 
@@ -46,7 +46,7 @@ public class Main extends Application {
 			alert.setContentText("Connect Myo and then restart Programm!");
 			alert.showAndWait();
 		}
-		
+
 		hub.setLockingPolicy(LockingPolicy.LOCKING_POLICY_NONE);
 		KeyboardCommandManager cmdManager = new KeyboardCommandManager(ardrone);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("View.fxml"));
@@ -78,34 +78,32 @@ public class Main extends Application {
 		new Thread(runnable).start();
 
 		// Battery
-		BatteryInDecimal bid = new BatteryInDecimal();
-		bid.activate(ardrone);
+		BatteryInDecimal bid = new BatteryInDecimal(ardrone);
 		bid.setProgressbarDrone(c.getProgressbarDrone());
 
-		// Attitude
-		Altitude attitude = new Altitude();
-		attitude.activate(ardrone);
-		attitude.setAttitudeLabel(c.getHeightDrone());
+		// altitude
+		Altitude altitude = new Altitude(ardrone);
+		altitude.setAttitudeLabel((c.getHeightDrone()));
 
 		// Speed
-		SpeedLabel speed = new SpeedLabel();
-		speed.activate(ardrone);
+		SpeedLabel speed = new SpeedLabel(ardrone);
 		speed.setSpeedLabel(c.getSpeedDrone());
 
 		// Connection State
-		ConnectionState cs = new ConnectionState();
-		cs.activate(ardrone);
+		ConnectionState cs = new ConnectionState(ardrone);
 		cs.setNavadataStateLabel(c.getStatusNavdataLabelDrone());
 		cs.setVideoStateLabel(c.getStatusVideoLabelDrone());
 		cs.setCommandStateLabel(c.getStatusConnectionLabelDrone());
+
+		// Video
+		Video video = new Video(ardrone, c);
+		video.start();
 
 		// Main
 		stage.setTitle("Control Center");
 		stage.setScene(scene);
 		stage.show();
 
-		Video video = new Video(ardrone, c);
-		video.start();
 	}
 
 	public String getCurrentKey() {

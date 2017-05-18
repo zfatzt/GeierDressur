@@ -8,6 +8,12 @@ import javafx.scene.control.Label;
 public class Altitude {
 	private IARDrone drone;
 
+	public Altitude(IARDrone drone) {
+		this.setDrone(drone);
+
+		drone.getNavDataManager().addAltitudeListener(altitudeListener);
+	}
+
 	private AltitudeListener altitudeListener = new AltitudeListener() {
 
 		public void receivedAltitude(int altitude) {
@@ -23,18 +29,16 @@ public class Altitude {
 
 	private Label attitudeLabel;
 
-	public void activate(IARDrone drone) {
-		this.drone = drone;
-
-		drone.getNavDataManager().addAltitudeListener(altitudeListener);
-	}
-
-	public void deactivate() {
-		drone.getNavDataManager().removeAltitudeListener(altitudeListener);
-	}
-
 	public void setAttitudeLabel(Label attitudelabel) {
 		this.attitudeLabel = attitudelabel;
 
+	}
+
+	public IARDrone getDrone() {
+		return drone;
+	}
+
+	public void setDrone(IARDrone drone) {
+		this.drone = drone;
 	}
 }
