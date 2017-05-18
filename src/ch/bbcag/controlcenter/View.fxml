@@ -79,7 +79,7 @@
 						<ImageView fx:id="droneImage" fitHeight="265.0"
 							fitWidth="310.0" pickOnBounds="true" preserveRatio="true" >
 						<image>
-							<Image url="@img/drone.jpg" />
+							<Image url="@img/drone.png" />
 						</image>
 					</ImageView>
 					</children>
