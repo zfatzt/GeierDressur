@@ -112,9 +112,11 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
 
 	@Override
 	public void onConnect(Myo myo, long timestamp, FirmwareVersion firmwareVersion) {
-		connectionLabel.setGraphic(new ImageView(greenIcon));
-		connectionLabel.setText("Connection State");
-	}
+        Platform.runLater(() -> {
+            connectionLabel.setGraphic(new ImageView(greenIcon));
+            connectionLabel.setText("Connection State");
+        });
+    }
 
 	@Override
 	public void onDisconnect(Myo myo, long timestamp) {
