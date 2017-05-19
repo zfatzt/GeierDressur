@@ -3,6 +3,7 @@ package de.yadrone.base.video.xuggler;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
+import ch.bbcag.controlcenter.plugins.exceptions.ErrorDialogs;
 import com.xuggle.xuggler.Global;
 import com.xuggle.xuggler.ICodec;
 import com.xuggle.xuggler.IContainer;
@@ -34,7 +35,8 @@ public class XugglerDecoder implements VideoDecoder
 		// Open up the container
 		if (container.open(is, null) < 0)
 			throw new IllegalArgumentException("could not open inpustream");
-
+			ErrorDialogs dialogs = new ErrorDialogs();
+			dialogs.errorDialogVideoDrone();
 		// query how many streams the call to open found
 		int numStreams = container.getNumStreams();
 

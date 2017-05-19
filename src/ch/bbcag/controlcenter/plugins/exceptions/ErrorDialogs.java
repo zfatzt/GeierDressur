@@ -21,4 +21,18 @@ public class ErrorDialogs {
 
     }
 
+    public void errorDialogConnectionDrone(){
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText("Failed to Connect to Drone");
+        alert.showAndWait();
+
+
+    }
+
+    public void errorDialogVideoDrone(){
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText("Failed to Open Video Stream");
+        alert.showAndWait();
+    }
+
 }
