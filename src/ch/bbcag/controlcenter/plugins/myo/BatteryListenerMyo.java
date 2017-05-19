@@ -168,11 +168,11 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
 		switch (pose.getType()) {
 		case WAVE_IN:
 			System.out.println("Pose wavein");
-			drone.spinLeft();
+			drone.down();
 			break;
 		case WAVE_OUT:
 			System.out.println("Pose wave out");
-			drone.spinRight();
+			drone.up();
 			break;
 		case FIST:
 			System.out.println("Pose fist");
