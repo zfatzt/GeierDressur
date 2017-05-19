@@ -189,7 +189,7 @@ public class BatteryListenerMyo extends Thread implements DeviceListener {
 			drone.getCommandManager().animate(FlightAnimation.WAVE);
 			break;
 		default:
-			System.out.println("Hello world my friend is the darkness... (I aint your friend)");
+			System.out.println("No Pose");
 			break;
 		}
 
