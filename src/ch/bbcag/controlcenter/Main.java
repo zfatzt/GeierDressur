@@ -91,7 +91,7 @@ public class Main extends Application {
 		video.start();
 
 		// Main
-		stage.setTitle("Controlcenter");
+		stage.setTitle("Geier Dressur");
 		stage.setScene(scene);
 		stage.show();
 
