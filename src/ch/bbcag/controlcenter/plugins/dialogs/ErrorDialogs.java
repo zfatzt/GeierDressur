@@ -1,4 +1,4 @@
-package ch.bbcag.controlcenter.plugins.exceptions;
+package ch.bbcag.controlcenter.plugins.dialogs;
 
 import javafx.scene.control.Alert;
 

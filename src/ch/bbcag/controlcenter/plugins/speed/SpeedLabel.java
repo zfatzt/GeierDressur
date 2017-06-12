@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 public class SpeedLabel {
 	private IARDrone drone;
 	private Label speedLabel;
+	private int speed;
 
 	public SpeedLabel(IARDrone drone) {
 		this.drone = drone;

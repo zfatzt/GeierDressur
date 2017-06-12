@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GeierDressur.iml" filepath="$PROJECT_DIR$/GeierDressur.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Geier.iml" filepath="$PROJECT_DIR$/.idea/Geier.iml" />
+      <module fileurl="file://C:\Users\admin\IdeaProjects\Geier\GeierDressur.iml" filepath="C:\Users\admin\IdeaProjects\Geier\GeierDressur.iml" />
     </modules>
   </component>
 </project>

@@ -17,8 +17,8 @@ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PRO
  */
 package de.yadrone.base.manager;
 
-import ch.bbcag.controlcenter.plugins.exceptions.ErrorDialogs;
-import javafx.application.Platform;
+import ch.bbcag.controlcenter.plugins.dialogs.ErrorDialogs;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +35,6 @@ public abstract class AbstractTCPManager implements Runnable {
 	protected Socket socket = null;
 	protected boolean connected = false;
 	protected Thread thread;
-	protected ErrorDialogs dialogs = new ErrorDialogs();
 
 	public AbstractTCPManager(InetAddress inetaddr) {
 		this.inetaddr = inetaddr;
@@ -47,9 +46,9 @@ public abstract class AbstractTCPManager implements Runnable {
 			socket = new Socket(inetaddr, port);
 			socket.setSoTimeout(3000);
 		} catch (IOException e) {
-			Platform.runLater(() -> dialogs.errorDialogConnectionDrone());
+			e.printStackTrace();
 			connected = false;
-
+			throw e;
 		}
 		connected = true;
 		return true;

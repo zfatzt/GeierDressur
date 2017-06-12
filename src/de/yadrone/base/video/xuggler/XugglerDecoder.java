@@ -3,7 +3,7 @@ package de.yadrone.base.video.xuggler;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
-import ch.bbcag.controlcenter.plugins.exceptions.ErrorDialogs;
+import ch.bbcag.controlcenter.plugins.dialogs.ErrorDialogs;
 import com.xuggle.xuggler.Global;
 import com.xuggle.xuggler.ICodec;
 import com.xuggle.xuggler.IContainer;

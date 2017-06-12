@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
-import ch.bbcag.controlcenter.plugins.exceptions.ErrorDialogs;
+import ch.bbcag.controlcenter.plugins.dialogs.ErrorDialogs;
 import de.yadrone.base.command.CommandManager;
 import de.yadrone.base.exception.IExceptionListener;
 import de.yadrone.base.exception.VideoException;
@@ -42,6 +42,7 @@ public class VideoManager extends AbstractTCPManager implements ImageListener {
 	public VideoManager(InetAddress inetaddr, CommandManager manager, VideoDecoder decoder,
 			IExceptionListener excListener) {
 		super(inetaddr);
+		this.manager = manager;
 		this.manager = manager;
 		this.decoder = decoder;
 		this.excListener = excListener;
@@ -107,11 +108,8 @@ public class VideoManager extends AbstractTCPManager implements ImageListener {
 			System.out.println("VideoManager: decode ");
 			decoder.decode(getInputStream());
 		} catch (Exception exc) {
-//			exc.printStackTrace();
-//			excListener.exeptionOccurred(new VideoException(exc));
-			Platform.runLater(() -> {ErrorDialogs dialogs = new ErrorDialogs();
-			dialogs.errorDialogVideoDrone();
-			});
+			exc.printStackTrace();
+			excListener.exeptionOccurred(new VideoException(exc));
 
 		}
 
